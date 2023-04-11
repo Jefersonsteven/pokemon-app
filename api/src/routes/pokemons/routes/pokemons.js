@@ -4,6 +4,16 @@ const newPokemons = new Pokemons();
 
 const pokemons = Router();
 
+
+pokemons.get('/name', async (req, res) => {
+    try {
+        const pokemon = await newPokemons.findPokemonForName(req, res);
+        res.json(pokemon);
+    } catch (error) {
+        res.status(500).json({message: error.message});
+    }
+})
+
 pokemons.get('/', async (req, res) => {
     try {
         const pokemons = await newPokemons.findPokemons();
@@ -17,6 +27,18 @@ pokemons.get('/:idPokemon', async (req, res) => {
     try {
         const pokemon = await newPokemons.findPokemon(req, res);
         res.json(pokemon);
+    } catch (error) {
+        res.status(500).json({message: error.message});
+    }
+})
+
+pokemons.post('/', async (req, res) => {
+    try {
+        const pokemon = await newPokemons.createPokemon(req, res);
+        res.json({
+            message: 'created',
+            data: pokemon
+        });
     } catch (error) {
         res.status(500).json({message: error.message});
     }

@@ -4,12 +4,11 @@ const axios = require('axios');
 class Pokemons {
     constructor(){
         this.API_URL = 'https://pokeapi.co/api/v2/pokemon';
-        this.pokemons = []
-        this.peticions = []
     }
 
     async findPokemons() {
         const pokemons = await axios.get(`${this.API_URL}/?limit=12&offset=0`);
+
         return pokemons.data;
     }
 
@@ -29,19 +28,40 @@ class Pokemons {
                     speed: p.stats[5].base_stat || null,
                     height: p.height || null,
                     weight: p.weight || null,
-                    types: p.types
+                    type: p.types.map(type => type.type.name)
                 };
             } catch {
                 const pokemon = await Pokemon.findByPk(idPokemon);
                 if (!pokemon) {
-                    res.status(404).json({ message: "Pokemon Not found" });
+                    throw Error("Pokemon Not found" );
                 }
                 return pokemon;
             }
         } else {
-            throw Error('Tiene que ser un numero');
+            throw Error('has to be a number');
         }
     }
+
+    async findPokemonForName(req, res) {
+        const { name } = req.query;
+        try {
+            const pokemon = await axios.get(`${this.API_URL}/${name.toLowerCase()}`);
+            return pokemon.data;
+        } catch (error) {
+            const pokemon = await Pokemon.findOne({
+                where: { name: name.toLowerCase() }
+            })
+            if (!pokemon) {
+                throw Error("Pokemon Not found" );
+            }
+            return pokemon;
+        }
+    }
+
+    // async createPokemon(req, res) {
+    //     const {id,name,image,up,attack,defense,speed,height,weight,type} = req.body;
+    //     const pokemon = 
+    // }
 }
 
 
