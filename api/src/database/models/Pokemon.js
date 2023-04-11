@@ -5,6 +5,9 @@ module.exports = (sequelize) => {
   sequelize.define('Pokemon', {
     id: {
       type: DataTypes.INTEGER,
+      validate: {
+        min: 1200,
+      },
       autoIncrement: true,
       primaryKey: true,
     },
@@ -19,7 +22,7 @@ module.exports = (sequelize) => {
         isUrl: true,
       },
     },
-    life: {
+    up: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },

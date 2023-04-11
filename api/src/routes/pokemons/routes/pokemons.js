@@ -1,0 +1,25 @@
+const { Router } = require('express');
+const Pokemons = require('../services/pokemons');
+const newPokemons = new Pokemons();
+
+const pokemons = Router();
+
+pokemons.get('/', async (req, res) => {
+    try {
+        const pokemons = await newPokemons.findPokemons();
+        res.json(pokemons);
+    } catch (error) {
+        res.status(500).json({message: error.message});
+    }
+});
+
+pokemons.get('/:idPokemon', async (req, res) => {
+    try {
+        const pokemon = await newPokemons.findPokemon(req, res);
+        res.json(pokemon);
+    } catch (error) {
+        res.status(500).json({message: error.message});
+    }
+})
+
+module.exports = pokemons;
