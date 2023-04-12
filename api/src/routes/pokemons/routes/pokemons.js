@@ -14,6 +14,16 @@ pokemons.get('/name', async (req, res) => {
     }
 })
 
+
+pokemons.get('/types', async (req, res) => {
+    try {
+        const types = await newPokemons.findTypes(req, res);
+        res.json(types);
+    } catch (error) {
+        res.status(500).json({message: error.message});
+    }
+})
+
 pokemons.get('/', async (req, res) => {
     try {
         const pokemons = await newPokemons.findPokemons();
@@ -25,7 +35,7 @@ pokemons.get('/', async (req, res) => {
 
 pokemons.get('/:idPokemon', async (req, res) => {
     try {
-        const pokemon = await newPokemons.findPokemon(req, res);
+        const pokemon = await newPokemons.findPokemonByID(req, res);
         res.json(pokemon);
     } catch (error) {
         res.status(500).json({message: error.message});
@@ -43,5 +53,6 @@ pokemons.post('/', async (req, res) => {
         res.status(500).json({message: error.message});
     }
 })
+
 
 module.exports = pokemons;
