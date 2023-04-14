@@ -1,0 +1,14 @@
+.NavBar {
+    display: flex;
+    justify-content: space-between;
+    & .botonMenu {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        & div {
+            width: 31px;
+            height: 6px;
+            background-color: rgb(8, 8, 8);
+        }
+    }
+}
