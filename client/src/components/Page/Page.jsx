@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Card } from "../index";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentPage } from "../../redux/actions";
@@ -6,7 +6,7 @@ import { setCurrentPage } from "../../redux/actions";
 function Page({pokemons}) {
     const dispatch = useDispatch();
     const currentPage = useSelector(state => state.currentPage);
-
+    const filterAndOrder = useSelector(state => state.filterAndOrder);
     const numberOfPokemonsPerPages = 12;
 
     //* ❔
@@ -15,9 +15,9 @@ function Page({pokemons}) {
         countPage.push(i);
     }
 
-    const Start = currentPage * numberOfPokemonsPerPages;
-    const End = Start + numberOfPokemonsPerPages;
-    const page = pokemons.slice(Start, End);
+        const Start = currentPage * numberOfPokemonsPerPages;
+        const End = Start + numberOfPokemonsPerPages;
+        const page = filterAndOrder.slice(Start, End);
 
     return ( 
         <div className="Page">

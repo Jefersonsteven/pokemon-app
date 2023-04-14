@@ -4,7 +4,9 @@ import {
     SET_CURRENT_PAGE,
     FILTER_PER_TYPES,
     FILTER_PER_ORIGIN,
-    filterPerOrigin,
+    ORDER_ASCENDENT_OR_DESCENDENT,
+    ORDER_A_Z_OR_Z_A,
+    ORDER_ATTACK,
 } from "./actions";
 
 const initialState = {
@@ -66,6 +68,19 @@ function rootReducer(state = initialState, action) {
                     filterAndOrder: state.pokemons.filter(pokemon => {
                         return typeof pokemon.id === typeof "1"
                     })
+                }
+            }
+        case ORDER_ASCENDENT_OR_DESCENDENT:
+            if(action.paylaod === 'Ascendent') {
+                return {
+                    ...state,
+                    filterAndOrder: state.filterAndOrder.sort((a, b) => a.id - b.id),
+                    currentPage:  1
+                }
+            } else {
+                return {
+                    ...state,
+                    filterAndOrder: state.filterAndOrder.sort((a, b) => b.id - a.id)
                 }
             }
 

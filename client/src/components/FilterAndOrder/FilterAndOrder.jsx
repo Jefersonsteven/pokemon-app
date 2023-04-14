@@ -1,6 +1,6 @@
 import React from "react";
 import { Arrow, Close_icon, Filter_icon, Order_icon } from '../index';
-import { filterPerOrigin, filterPerTypes } from "../../redux/actions";
+import { filterPerOrigin, filterPerTypes, orderAscendentOrDescendent } from "../../redux/actions";
 import { useDispatch } from "react-redux";
 
 function FilterAndOrder({types}) {
@@ -46,8 +46,8 @@ function FilterAndOrder({types}) {
                 <Order_icon />
                 <div className="Filter-options">
                     <Close_icon />
-                    <button>Ascendent <Arrow/></button>
-                    <button>Descendent <Arrow/></button>
+                    <button onClick={() => distpatch(orderAscendentOrDescendent('Ascendent'))} >Ascendent<Arrow/></button>
+                    <button onClick={() => distpatch(orderAscendentOrDescendent('Descendent'))}>Descendent <Arrow/></button>
                     <button>A - Z</button>
                     <button>Z - A</button>
                     <button>Lesser attack <Arrow/></button>

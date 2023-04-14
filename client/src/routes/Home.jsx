@@ -5,7 +5,6 @@ import { findPokemons, findTypes } from '../redux/actions';
 
 function Home() {
     const dispatch = useDispatch();
-    const pokemons = useSelector(state => state.pokemons);
     const types = useSelector(state => state.types);
     const filterAndOrder = useSelector(state => state.filterAndOrder);
 
