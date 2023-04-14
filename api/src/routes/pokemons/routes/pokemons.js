@@ -14,6 +14,15 @@ pokemons.get('/name', async (req, res) => {
     }
 })
 
+pokemons.get('/types', async (req, res) => {
+    try {
+        const types = await newPokemons.findTypes(req, res);
+        res.json(types);
+    } catch (error) {
+        res.status(500).json({message: error.message});
+    }
+})
+
 pokemons.get('/', async (req, res) => {
     try {
         const pokemons = await newPokemons.findPokemons();
