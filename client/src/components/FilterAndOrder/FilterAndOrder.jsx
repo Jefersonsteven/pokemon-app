@@ -1,10 +1,11 @@
 import React from "react";
 import { Arrow, Close_icon, Filter_icon, Order_icon } from '../index';
-import { filterPerOrigin, filterPerTypes, orderAscendentOrDescendent } from "../../redux/actions";
-import { useDispatch } from "react-redux";
+import { filterPerOrigin, filterPerTypes, orderAZorZA, orderAscendentOrDescendent, orderAttack, setCurrentPage } from "../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
 
-function FilterAndOrder({types}) {
-    const distpatch = useDispatch();
+function FilterAndOrder() {
+    const dispatch = useDispatch();
+    const types = useSelector(state => state.types);
     
     return (
         <div className="FilterAndOrder">
@@ -14,7 +15,7 @@ function FilterAndOrder({types}) {
                     <Close_icon />
                     <select 
                         onChange={event => {
-                                return distpatch(filterPerTypes(event.target.value))
+                                return dispatch(filterPerTypes(event.target.value))
                             }
                         }
                         >
@@ -31,8 +32,7 @@ function FilterAndOrder({types}) {
                     </select>
                     <select
                         onChange={event => {
-                            console.log(event.target.value);
-                                return distpatch(filterPerOrigin(event.target.value))
+                                return dispatch(filterPerOrigin(event.target.value))
                             }
                         }
                     >
@@ -46,12 +46,12 @@ function FilterAndOrder({types}) {
                 <Order_icon />
                 <div className="Filter-options">
                     <Close_icon />
-                    <button onClick={() => distpatch(orderAscendentOrDescendent('Ascendent'))} >Ascendent<Arrow/></button>
-                    <button onClick={() => distpatch(orderAscendentOrDescendent('Descendent'))}>Descendent <Arrow/></button>
-                    <button>A - Z</button>
-                    <button>Z - A</button>
-                    <button>Lesser attack <Arrow/></button>
-                    <button>Major attack <Arrow/></button>
+                    <button onClick={() => dispatch(orderAscendentOrDescendent('Ascendent'))}>Ascendent<Arrow/></button>
+                    <button onClick={() => dispatch(orderAscendentOrDescendent('Descendent'))}>Descendent <Arrow/></button>
+                    <button onClick={() => dispatch(orderAZorZA("A-Z"))}>A - Z</button>
+                    <button onClick={() => dispatch(orderAZorZA("Z-A"))}>Z - A</button>
+                    <button onClick={() => dispatch(orderAttack("Lesser attack"))}>Lesser attack <Arrow/></button>
+                    <button onClick={() => dispatch(orderAttack("Major attack"))}>Major attack <Arrow/></button>
                 </div>
             </div>
         </div>

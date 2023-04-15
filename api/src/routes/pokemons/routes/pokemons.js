@@ -12,7 +12,7 @@ pokemons.get('/name', async (req, res) => {
     } catch (error) {
         res.status(500).json({message: error.message});
     }
-})
+});
 
 pokemons.get('/types', async (req, res) => {
     try {
@@ -21,7 +21,7 @@ pokemons.get('/types', async (req, res) => {
     } catch (error) {
         res.status(500).json({message: error.message});
     }
-})
+});
 
 pokemons.get('/', async (req, res) => {
     try {
@@ -39,7 +39,7 @@ pokemons.get('/:idPokemon', async (req, res) => {
     } catch (error) {
         res.status(500).json({message: error.message});
     }
-})
+});
 
 pokemons.post('/', async (req, res) => {
     try {
@@ -51,7 +51,7 @@ pokemons.post('/', async (req, res) => {
     } catch (error) {
         res.status(500).json({message: error.message});
     }
-})
+});
 
 
 module.exports = pokemons;

@@ -1,4 +1,6 @@
 export const FIND_POKEMONS = 'FIND_POKEMONS';
+export const FIND_POKEMON_BY_ID = 'FIND_POKEMON_BY_ID';
+export const FIND_POKEMON_BY_NAME = 'FIND_POKEMON_BY_NAME';
 export const FIND_TYPES = 'FIND_TYPES';
 export const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 export const FILTER_PER_TYPES = 'FILTER_PER_TYPES';
@@ -14,6 +16,29 @@ export const findPokemons = (route) => {
         const data = await fetch(route);
         const pokemons = await data.json();
         return dispatch({ type: FIND_POKEMONS, payload: pokemons });
+    }
+}
+
+export const findPokemonByName = (name, route) => {
+
+    return async (dispatch) => {
+            if (name) {
+                const data = await fetch(`${route}/name/?name=${name}`);
+                const pokemon = await data.json();
+                if(pokemon.name) {
+                    return dispatch({ type: FIND_POKEMON_BY_NAME, payload: pokemon });
+                }
+            }
+            return dispatch({ type: FIND_POKEMON_BY_NAME, payload: { message: 'Not found' } })
+    }
+}
+
+export const findPokemonByID = (id, route) => {
+
+    return async (dispatch) => {
+        const data = await fetch(`${route}/${id}`);
+        const pokemon = await data.json();
+        return dispatch({ type: FIND_POKEMON_BY_ID, payload: pokemon });
     }
 }
 

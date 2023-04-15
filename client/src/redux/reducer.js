@@ -1,5 +1,7 @@
 import {
     FIND_POKEMONS,
+    FIND_POKEMON_BY_NAME,
+    FIND_POKEMON_BY_ID,
     FIND_TYPES,
     SET_CURRENT_PAGE,
     FILTER_PER_TYPES,
@@ -14,26 +16,35 @@ const initialState = {
     filterAndOrder: [],
     types: [],
     currentPage: 0,
+    pokemon: [],
 };
 
 function rootReducer(state = initialState, action) {
     switch (action.type) {
+
+
         case FIND_POKEMONS:
             return {
                 ...state,
                 pokemons: action.payload,
                 filterAndOrder: action.payload
             }
+
+
         case SET_CURRENT_PAGE:
             return {
                 ...state,
                 currentPage: action.payload
             }
+
+
         case FIND_TYPES:
             return {
                 ...state,
                 types: action.payload
             }
+
+
         case FILTER_PER_TYPES:
             if(action.payload === 'Alls types') {
                 return {
@@ -48,6 +59,8 @@ function rootReducer(state = initialState, action) {
                     })
                 }
             }
+
+
         case FILTER_PER_ORIGIN:
             if(action.payload === 'Alls Origins') {
                 return {
@@ -70,19 +83,72 @@ function rootReducer(state = initialState, action) {
                     })
                 }
             }
+
+
         case ORDER_ASCENDENT_OR_DESCENDENT:
-            if(action.paylaod === 'Ascendent') {
+            if(action.payload === 'Ascendent') {
                 return {
                     ...state,
-                    filterAndOrder: state.filterAndOrder.sort((a, b) => a.id - b.id),
-                    currentPage:  1
+                    filterAndOrder: [...state.filterAndOrder.sort((a, b) => b.id - a.id)],
+                    
                 }
             } else {
                 return {
                     ...state,
-                    filterAndOrder: state.filterAndOrder.sort((a, b) => b.id - a.id)
+                    filterAndOrder: [...state.filterAndOrder.sort((a, b) => a.id - b.id)]
                 }
             }
+
+        case ORDER_A_Z_OR_Z_A:
+            if(action.payload === "A-Z") {
+                return {
+                    ...state,
+                    filterAndOrder: [...state.filterAndOrder.sort((a, b) => {
+                        if(a.name < b.name) {
+                            return -1;
+                        }
+                        if(a.name > b.name) {
+                            return 1;
+                        }
+                        return 0;
+                    })]
+                }
+            }
+            if(action.payload === "Z-A") {
+                return {
+                    ...state,
+                    filterAndOrder: [...state.filterAndOrder.sort((a, b) => {
+                        if(b.name < a.name) {
+                            return -1;
+                        }
+                        if(b.name > a.name) {
+                            return 1;
+                        }
+                        return 0;
+                    })]
+                }
+            }
+
+            case ORDER_ATTACK:
+                if(action.payload === 'Lesser attack') {
+                    return {
+                        ...state,
+                        filterAndOrder: [...state.filterAndOrder.sort((a, b) => a.attack - b.attack)],
+                        
+                    }
+                } else {
+                    return {
+                        ...state,
+                        filterAndOrder: [...state.filterAndOrder.sort((a, b) => b.attack - a.attack)]
+                    }
+                }
+
+            
+            case FIND_POKEMON_BY_NAME:
+                return {
+                    ...state,
+                    pokemon: [ action.payload ]
+                }
 
 
         default:

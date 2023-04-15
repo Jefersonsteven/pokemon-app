@@ -19,12 +19,13 @@ class Pokemons {
             }
         });
         const responseDB = dataDB?.map(data => {
-            const { id, image, name, Types } = data;
+            const { id, image, name, Types, attack } = data;
             return {
                 id,
                 image,
                 name,
-                Types: Types.map(type => type.name)
+                Types: Types.map(type => type.name),
+                attack
             }
         })
 
@@ -32,12 +33,13 @@ class Pokemons {
         const results = pokemons.data.results.map(pokemon => axios.get(pokemon.url));
         const dataAPI = await Promise.all(results);
         const responseAPI = dataAPI.map((data) => { 
-            const { id, sprites, name, types } = data.data;
+            const { id, sprites, name, types, stats } = data.data;
             return {
                 id,
                 image: sprites.other.home.front_default,
                 name, 
-                Types: types.map(type => type.type.name)
+                Types: types.map(type => type.type.name),
+                attack: stats[1].base_stat
             } 
         });
 
@@ -90,18 +92,36 @@ class Pokemons {
 
     // funcion que responde con un pokemon con el mismo nombre dado, lo busca en la base de datos y en la API ✔️
     async findPokemonForName(req, res) {
-        const { name } = req.query;
+        const NAME = req.query.name;
         try {
-            const pokemon = await axios.get(`${this.API_URL}/${name.toLowerCase()}`);
-            return pokemon.data;
+            const pokemon = await axios.get(`${this.API_URL}/${NAME.toLowerCase()}`);
+            const { id, name, types } = pokemon.data;
+            return {
+                id,
+                name,
+                Types: types.map(type => type.type.name)
+            };
         } catch {
             const pokemon = await Pokemon.findOne({
-                where: { name: name.toLowerCase() }
+                where: { name: NAME.toLowerCase() },
+                include: {
+                    model: Type,
+                    attributes: ["name"],
+                    through: {
+                        attributes: [],
+                    }
+                }
             })
             if (!pokemon) {
-                throw Error("Pokemon Not found" );
+                throw Error("Pokemon Not found");
             }
-            return pokemon;
+            const { id, Types } = pokemon;
+            const nameBD = pokemon.name;
+            return  {
+                id,
+                name: nameBD,
+                Types: Types.map(type => type.name)
+            };
         }
     }
 
@@ -109,7 +129,6 @@ class Pokemons {
     async createPokemon(req, res) {
         const {name,image,up,attack,defense,speed,height,weight,types} = req.body;
         if(name&&image&&up&&attack&&defense&&types) {
-            console.log('entre');
             const newPokemon = await Pokemon.create({
                 name: name.toLowerCase(),
                 image,

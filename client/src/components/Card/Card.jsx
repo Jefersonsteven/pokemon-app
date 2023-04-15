@@ -1,6 +1,6 @@
 import React from "react";
 
-function Card({ image, name, types }) {
+function Card({ id, image, name, types }) {
     return ( 
         <div className="CardPokemon">
             {/* <img className="Image" src={image} alt={name} /> */}
