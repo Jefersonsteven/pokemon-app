@@ -44,7 +44,7 @@ pokemons.get('/:idPokemon', async (req, res) => {
 pokemons.post('/', async (req, res) => {
     try {
         const pokemon = await newPokemons.createPokemon(req, res);
-        res.json({
+        res.status(201).json({
             message: 'created',
             data: pokemon
         });

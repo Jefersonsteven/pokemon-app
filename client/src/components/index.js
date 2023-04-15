@@ -8,6 +8,8 @@ import Order_icon from "./svgs/Order_icon";
 import Close_icon from "./svgs/Close_icon";
 import Exit from './svgs/Exit';
 import Arrow from "./svgs/Arrow";
+import Polygon from './svgs/Polygon';
+import UserAdd from './svgs/UserAdd';
 import Nav from "./Nav/Nav";
 import SearchBar from "./SearchBar/SearchBar";
 import FilterAndOrder from "./FilterAndOrder/FilterAndOrder";
@@ -34,5 +36,7 @@ export {
     StatItem,
     Menu,
     Exit,
+    Polygon,
+    UserAdd
 };
 
