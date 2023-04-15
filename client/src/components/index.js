@@ -12,6 +12,7 @@ import SearchBar from "./SearchBar/SearchBar";
 import FilterAndOrder from "./FilterAndOrder/FilterAndOrder";
 import Card from "./Card/Card";
 import Page from "./Page/Page";
+import StatItem from './StatItem/StatItem'
 
 export {
     Home,
@@ -28,5 +29,6 @@ export {
     Card,
     Page,
     Arrow,
+    StatItem
 };
 

@@ -17,6 +17,8 @@ const initialState = {
     types: [],
     currentPage: 0,
     pokemon: [],
+    pokemonDetail: [],
+
 };
 
 function rootReducer(state = initialState, action) {
@@ -148,6 +150,13 @@ function rootReducer(state = initialState, action) {
                 return {
                     ...state,
                     pokemon: [ action.payload ]
+                }
+
+            
+            case FIND_POKEMON_BY_ID:
+                return {
+                    ...state,
+                    pokemonDetail: [ action.payload ]
                 }
 
 

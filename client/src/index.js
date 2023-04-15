@@ -8,7 +8,8 @@ import store from './redux/store';
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './App';
-import Home from './routes/Home';
+import Home from './routes/Home/Home';
+import Detail from './routes/Detail/Detail';
 
 const router = createBrowserRouter([
     {
@@ -21,6 +22,12 @@ const router = createBrowserRouter([
         path: '/home',
         element: (
             <Home />
+        )
+    },
+    {
+        path: '/pokemon/:pokemonId',
+        element: (
+            <Detail />
         )
     }
 ])
