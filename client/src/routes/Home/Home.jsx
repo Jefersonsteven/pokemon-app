@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux'
-import { Page, FilterAndOrder, Nav, SearchBar } from "../../components";
+import { Page, FilterAndOrder, Nav, SearchBar, Menu } from "../../components";
 import { findPokemons, findTypes } from '../../redux/actions';
 
 function Home() {
@@ -13,10 +13,13 @@ function Home() {
         dispatch(findTypes('http://localhost:3001/api/pokemons/types/'));
     }
 
+    const [ openMenu, setOpenMenu ] = useState(false);
+
     return ( 
         <div className="Home">
-            <Nav />
-            <SearchBar/>.          
+            <Nav setOpenMenu={setOpenMenu} openMenu={openMenu}/>
+            {openMenu && <Menu/>}
+            <SearchBar/>          
             <FilterAndOrder/>
             <Page/>
         </div>

@@ -7,23 +7,49 @@ import { Card, Close_icon } from '../index';
 function SearchBar() {
     const dispatch = useDispatch();
     const [ searchValue, setSearchValue ] = useState('');
+    const [ openResult, setOpenResult ] = useState(false);
+    const [ buttonDisabled, setbuttonDisabled ] = useState(true);
     const pokemon = useSelector(state => state.pokemon);
 
-    const BASE_URL = 'http://localhost:3001/api/pokemons'
+    const BASE_URL = 'http://localhost:3001/api/pokemons';
 
-    function handlerInput(event) {
+    function handleInput(event) {
+        if(event.target.value) {
+            setbuttonDisabled(false);
+        } else {
+            setbuttonDisabled(true);
+        }
         setSearchValue(event.target.value);
+    }
+
+    function handleOpenResult() {
+        openResult ? setOpenResult(false) : setOpenResult(true)
     }
 
     return ( 
         <div className="SearchBar">
-            <input onChange={handlerInput} type="text" placeholder="search pokemon"/>
-            <button onClick={() => dispatch(findPokemonByName(searchValue, BASE_URL))}>
+            <input 
+                onChange={handleInput} 
+                type="text" 
+                placeholder="search pokemon"
+                value={searchValue}
+            />
+            <button 
+                disabled={buttonDisabled}
+                onClick={() => {
+                    handleOpenResult()
+                    setSearchValue('')
+                    dispatch(findPokemonByName(searchValue, BASE_URL))
+                }}
+                >
                 <Search_icon/>
             </button>
             
+            {openResult &&
             <div className="Result">
-                <Close_icon/>
+                <div onClick={handleOpenResult}>
+                    <Close_icon/>
+                </div>
                 {pokemon[0]?.message && <span>{pokemon[0]?.message}</span>}
                 {pokemon[0]?.name &&
                     pokemon.map(({ id, image, name, Types }) => {
@@ -32,7 +58,7 @@ function SearchBar() {
                         )
                     })
                 }
-            </div>
+            </div>}
             
         </div>
     );

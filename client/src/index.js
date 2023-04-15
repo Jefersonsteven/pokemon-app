@@ -10,6 +10,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './App';
 import Home from './routes/Home/Home';
 import Detail from './routes/Detail/Detail';
+import CreatePokemon from './routes/CreatePokemon/CreatePokemon'
 
 const router = createBrowserRouter([
     {
@@ -28,6 +29,12 @@ const router = createBrowserRouter([
         path: '/pokemon/:pokemonId',
         element: (
             <Detail />
+        )
+    },
+    {
+        path: '/pokemon/create-pokemon',
+        element: (
+            <CreatePokemon />
         )
     }
 ])

@@ -4,14 +4,18 @@ import { Pokeball } from "../index";
 import { Link } from "react-router-dom";
 
 
-function Nav() {
+function Nav({openMenu, setOpenMenu}) {
+
+    function handleBotonMenu() {
+        openMenu ? setOpenMenu(false) : setOpenMenu(true);
+    }
 
     return (
         <nav className="NavBar">
             <Link to="/">
                 <Pokeball />
             </Link>
-            <div className="botonMenu">
+            <div className="botonMenu" onClick={handleBotonMenu}>
                 <div></div>
                 <div></div>
                 <div></div>
