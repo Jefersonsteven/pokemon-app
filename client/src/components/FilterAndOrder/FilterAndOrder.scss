@@ -1,0 +1,76 @@
+@mixin Button($left, $top, $right, $botton ){
+    width: 44px;
+    height: 38px;
+    background-color: var(--color-principal-clear);
+    border-radius: $left $top $right $botton;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}
+
+.FilterAndOrder {
+    margin-top: 18px;
+    display: flex;
+    justify-content: space-between;
+    & div {
+        position: relative;
+        & div:nth-child(2) {
+            position: absolute;
+            width: 191px;
+            display: flex;
+            gap: 10px;
+            flex-direction: column;
+            background: rgba(83, 60, 134, 0.5);
+            backdrop-filter: blur(2px);
+            z-index: 1;
+            & div {
+                margin: 8px;
+            }
+            & select, button {
+                margin: 0 3px 3px 3px;
+                height: 38px;
+                background-color: var(--color-principal-dark);
+                color: white;
+                border: none;
+                font-size: 1.6rem;
+                padding: 0px 10px;
+                text-transform: capitalize;
+                border-radius: 3px;
+            }
+        }
+    }
+    & .Filter {
+        & > div:nth-child(1) {
+            @include Button(0px, 3px, 3px, 0px);
+        }
+        & .Filter-options {
+            top: 0;
+            left: 0;
+            border-radius: 0 5px 5px 0px;
+        }
+    }
+    & .Order {
+        & > div:nth-child(1) {
+            @include Button(3px, 0px, 0px, 3px);
+        }
+        & .Order-options {
+            top: 0;
+            right: 0;
+            border-radius: 5px 0 0 5px;
+            & div {
+                display: flex;
+                justify-content: flex-end;
+            }
+            & button {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            & button:nth-child(3), button:nth-child(6) {
+                & svg {
+                    transform: rotate(180deg);
+                }
+            }
+        }
+    }
+}

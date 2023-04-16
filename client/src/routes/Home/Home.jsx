@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from 'react-redux'
+import './Home.scss';
+
+import React, { useState } from "react";
+import { useDispatch, useSelector } from 'react-redux';
 import { Page, FilterAndOrder, Nav, SearchBar, Menu } from "../../components";
 import { findPokemons, findTypes } from '../../redux/actions';
 

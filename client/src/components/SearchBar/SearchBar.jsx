@@ -1,7 +1,9 @@
+import "./SearchBar.scss";
+
 import React, { useState } from "react";
 import Search_icon from "../svgs/Search_icon";
 import { useDispatch, useSelector } from 'react-redux';
-import { findPokemonByName } from "../../redux/actions";
+import { findPokemonByName, setPokemon } from "../../redux/actions";
 import { Card, Close_icon } from '../index';
 
 function SearchBar() {
@@ -23,33 +25,37 @@ function SearchBar() {
     }
 
     function handleOpenResult() {
-        openResult ? setOpenResult(false) : setOpenResult(true)
+        if(openResult && pokemon[0]) dispatch(setPokemon());
+        openResult ? setOpenResult(false) : setOpenResult(true);
     }
 
     return ( 
-        <div className="SearchBar">
-            <input 
-                onChange={handleInput} 
-                type="text" 
-                placeholder="search pokemon"
-                value={searchValue}
-            />
-            <button 
-                disabled={buttonDisabled}
-                onClick={() => {
-                    handleOpenResult()
-                    setSearchValue('')
-                    dispatch(findPokemonByName(searchValue, BASE_URL))
-                }}
+        <div className="Search_container">
+            <div className="SearchBar">
+                <input
+                    onChange={handleInput}
+                    type="text"
+                    placeholder="Search pokemon"
+                    value={searchValue}
+                />
+                <button
+                    disabled={buttonDisabled}
+                    onClick={() => {
+                        handleOpenResult()
+                        setSearchValue('')
+                        dispatch(findPokemonByName(searchValue, BASE_URL))
+                    }}
                 >
-                <Search_icon/>
-            </button>
+                    <Search_icon />
+                </button>
+            </div>
             
             {openResult &&
-            <div className="Result">
+            <div className="SearchResult">
                 <div onClick={handleOpenResult}>
                     <Close_icon/>
                 </div>
+                {!pokemon[0] && <span>Loading...</span>}
                 {pokemon[0]?.message && <span>{pokemon[0]?.message}</span>}
                 {pokemon[0]?.name &&
                     pokemon.map(({ id, image, name, Types }) => {

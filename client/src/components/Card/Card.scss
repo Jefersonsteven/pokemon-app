@@ -1,0 +1,48 @@
+.CardPokemon {
+    width: 136px;
+    height: 179px;
+    background: rgba(255, 255, 255, 0.123);
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 7.5px );
+    -webkit-backdrop-filter: blur( 7.5px );
+    box-shadow: -4px -2px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 3px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    position: relative;
+    padding: 11px;
+    & .Image {
+        width: 136px;
+        position: absolute;
+        top: -30px;
+        left: 0;
+    }
+    & .Info {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        height: 100%;
+        gap: 10px;
+        & .Name {
+            font-size: 1.6rem;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            text-transform: capitalize;
+            & a {
+                font-weight: 500;
+            }
+        }
+        & .Types {
+            display: flex;
+            gap: 9px;
+            overflow-y: hidden;
+            white-space: nowrap;
+            padding: 3px 0;
+            & span {
+                font-size: 1.2rem;
+                padding: 2px 5px;
+                border-radius: 5px;
+            }
+        }
+    }
+}

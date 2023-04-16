@@ -1,14 +1,17 @@
 .NavBar {
+    padding: 0 15px;
     display: flex;
     justify-content: space-between;
     & .botonMenu {
         display: flex;
         flex-direction: column;
+        justify-content: center;
         gap: 5px;
         & div {
             width: 31px;
             height: 6px;
-            background-color: rgb(8, 8, 8);
+            background-color: rgb(255, 255, 255);
+            border-radius: 3px;
         }
     }
 }

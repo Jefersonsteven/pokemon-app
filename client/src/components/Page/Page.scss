@@ -1,0 +1,44 @@
+.Page {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    & .Page_container {
+        padding: 0 15px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+    }
+    & .PageNavigator {
+        padding: 32px 0px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        & > button {
+            width: 40px;
+            height: 39px;
+            background-color: #D9D0FF;
+            border: none;
+            border-radius: 0 0 5px 5px;
+            & svg {
+                & path {
+                    fill: black;
+                }
+            }
+        }
+        & .PageNumber {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            padding: 0 20px;
+            & button {
+                width: 37px;
+                height: 35px;
+                border-radius: 3px;
+                border: none;
+                font-weight: 800;
+            }
+        }
+    }
+}

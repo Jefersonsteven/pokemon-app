@@ -1,3 +1,5 @@
+import './FilterAndOrder.scss';
+
 import React, {useState} from "react";
 import { Arrow, Close_icon, Filter_icon, Order_icon } from '../index';
 import { filterPerOrigin, filterPerTypes, orderAZorZA, orderAscendentOrDescendent, orderAttack, setCurrentPage } from "../../redux/actions";
@@ -10,11 +12,13 @@ function FilterAndOrder() {
     const [ openOrder, setOpenOrder ] = useState(false);
     
     function handlerOpenFilter() {
-        openFilter ? setOpenFilter(false) : setOpenFilter(true)
+        openFilter ? setOpenFilter(false) : setOpenFilter(true);
+        openOrder && setOpenOrder(false);
     }
 
     function handlerOpenOrder() {
-        openOrder ? setOpenOrder(false) : setOpenOrder(true)
+        openOrder ? setOpenOrder(false) : setOpenOrder(true);
+        openFilter && setOpenFilter(false);
     }
 
     return (
@@ -25,10 +29,10 @@ function FilterAndOrder() {
                 </div>
                 {openFilter &&
                     <div className="Filter-options">
-                    <div onClick={handlerOpenFilter}>                        
+                        <div onClick={handlerOpenFilter}>                        
                         <Close_icon />
-                    </div>
-                    <select 
+                        </div>
+                        <select 
                         onChange={event => {
                                 return dispatch(filterPerTypes(event.target.value))
                             }
@@ -44,8 +48,8 @@ function FilterAndOrder() {
                                 {type.name}
                             </option>)
                         }
-                    </select>
-                    <select
+                        </select>
+                        <select
                         onChange={event => {
                                 return dispatch(filterPerOrigin(event.target.value))
                             }
@@ -54,15 +58,15 @@ function FilterAndOrder() {
                         <option value="Alls Origins">Alls Origins</option>
                         <option value="Data Base">Data base</option>
                         <option value="API">API</option>
-                    </select>
-                </div>}
+                        </select>
+                    </div>}
             </div>
             <div className="Order">
                 <div onClick={handlerOpenOrder}>
                     <Order_icon />
                 </div>
                 {openOrder &&
-                <div className="Filter-options">
+                <div className="Order-options">
                     <div onClick={handlerOpenOrder}>                        
                         <Close_icon />
                     </div>

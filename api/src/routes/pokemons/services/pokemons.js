@@ -95,10 +95,11 @@ class Pokemons {
         const NAME = req.query.name;
         try {
             const pokemon = await axios.get(`${this.API_URL}/pokemon/${NAME.toLowerCase()}`);
-            const { id, name, types } = pokemon.data;
+            const { id, name, sprites, types } = pokemon.data;
             return {
                 id,
                 name,
+                image: sprites.other.home.front_default || sprites.other['official-artwork'].front_default,
                 Types: types.map(type => type.type.name)
             };
         } catch {
@@ -115,10 +116,11 @@ class Pokemons {
             if (!pokemon) {
                 throw Error("Pokemon Not found");
             }
-            const { id, Types } = pokemon;
+            const { id, Types, image } = pokemon;
             const nameBD = pokemon.name;
             return  {
                 id,
+                image,
                 name: nameBD,
                 Types: Types.map(type => type.name)
             };

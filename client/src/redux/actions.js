@@ -8,6 +8,7 @@ export const FILTER_PER_ORIGIN = 'FILTER_PER_ORIGIN';
 export const ORDER_ASCENDENT_OR_DESCENDENT = 'ORDER_ASCENDENT_OR_DESCENDENT';
 export const ORDER_A_Z_OR_Z_A = 'ORDER_A_Z_OR_Z_A';
 export const ORDER_ATTACK = 'ORDER_ATTACK';
+export const SET_POKEMON = 'SET_POKEMON';
 
 //* async
 export const findPokemons = (route) => {
@@ -74,4 +75,8 @@ export const orderAZorZA = (filter) => {
 
 export const orderAttack = (filter) => {
     return { type: ORDER_ATTACK, payload: filter }
+}
+
+export const setPokemon = () => {
+    return { type: SET_POKEMON, payload: {} }
 }
