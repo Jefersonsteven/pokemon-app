@@ -8,17 +8,19 @@ import { Home, Pokemon_logo, Pikachu_ash, } from './components/index';
 function App() {
     return ( 
         <>
-            <div className='App_Con'>
+            <div className='App'>
                 <section>
                     <h1>ポケットモンスター</h1>
                     <Pokemon_logo/>
                     <Link to="/home">
                         <Home/>
-                        Home
+                        <p>Home</p>
                     </Link>
                 </section>
                 <section>
-                    <Pikachu_ash/>
+                    <div>
+                        <Pikachu_ash/>
+                    </div>
                 </section>
             </div>
         </>
