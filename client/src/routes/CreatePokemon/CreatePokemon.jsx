@@ -1,20 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Arrow, Polygon, UserAdd } from '../../components';
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { findTypes } from "../../redux/actions";
+import { findTypes, findPokemons } from "../../redux/actions";
 import validateForm from "../../assets/valideForm";
 
 function CreatePokemon() {
 
     const dispatch = useDispatch();
     const types = useSelector(state => state.types);
-    if (types.length === 0) {
-        dispatch(findTypes('http://localhost:3001/api/pokemons/types/'));
-    }
+    const pokemons = useSelector(state => state.pokemons);
 
 
     const [ created, setCreated ] = useState({});
+    useEffect(()=>{
+        dispatch(findPokemons('http://localhost:3001/api/pokemons'));
+    },[created]);
+    if (types.length === 0) {
+        dispatch(findTypes('http://localhost:3001/api/pokemons/types/'));
+    }
+        
+        
     const [sendTypes, setSendTypes] = useState([]);
     const [form, setForm] = useState({
         name: '',
@@ -40,7 +46,7 @@ function CreatePokemon() {
         form: ''
     });
 
-
+    // * 
 
     function handleForm(event) {
         const name = event.target.name;
@@ -66,7 +72,7 @@ function CreatePokemon() {
     }
 
     async function handleSubmit(e) {
-        e.preventDefault()
+        e.preventDefault();
         if(validateForm(form, errors, setErrors)) {
             const { name,image,up,attack,defense,speed,height,weight,types } = form;
             const response = await fetch('http://localhost:3001/api/pokemons', {

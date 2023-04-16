@@ -3,10 +3,10 @@ const axios = require('axios');
 
 class Pokemons {
     constructor(){
-        this.API_URL = 'https://pokeapi.co/api/v2/pokemon';
+        this.API_URL = 'https://pokeapi.co/api/v2';
     }
 
-    // funcion que responde con 40 pokemons de la API y los que aiga en la base de datos. ✔️
+    // funcion que responde con 60 pokemons de la API y los que contenga la base de datos. ✔️
     async findPokemons() {
 
         const dataDB = await Pokemon.findAll({ 
@@ -29,7 +29,7 @@ class Pokemons {
             }
         })
 
-        const pokemons = await axios.get(`${this.API_URL}/?limit=60&offset=0`);
+        const pokemons = await axios.get(`${this.API_URL}/pokemon/?limit=60&offset=0`);
         const results = pokemons.data.results.map(pokemon => axios.get(pokemon.url));
         const dataAPI = await Promise.all(results);
         const responseAPI = dataAPI.map((data) => { 
@@ -55,7 +55,7 @@ class Pokemons {
         const { idPokemon } = req.params;
 
         try {
-            const pokemon = await axios.get(`${this.API_URL}/${idPokemon}`);
+            const pokemon = await axios.get(`${this.API_URL}/pokemon/${idPokemon}`);
             const p = pokemon.data;
             return { 
                 id: p.id,
@@ -94,7 +94,7 @@ class Pokemons {
     async findPokemonForName(req, res) {
         const NAME = req.query.name;
         try {
-            const pokemon = await axios.get(`${this.API_URL}/${NAME.toLowerCase()}`);
+            const pokemon = await axios.get(`${this.API_URL}/pokemon/${NAME.toLowerCase()}`);
             const { id, name, types } = pokemon.data;
             return {
                 id,
@@ -125,7 +125,7 @@ class Pokemons {
         }
     }
 
-    // funcion que responde con un pokemon creado en la base de datos. ✔️
+    // funcion que responde crea un pokemon en la base de datos. ✔️
     async createPokemon(req, res) {
         const {name,image,up,attack,defense,speed,height,weight,types} = req.body;
         if(name&&image&&up&&attack&&defense&&types) {
@@ -148,11 +148,11 @@ class Pokemons {
         }
     }
 
-    // funcion que responder con los types de la base de datos ✔️
+    // funcion que copia los types de la API a la BD y responde con los types de la base de datos ✔️
     async findTypes() {
         const typesBD = await Type.findAll();
         if(typesBD.length === 0) {
-            const data = await axios.get(`https://pokeapi.co/api/v2/type`);
+            const data = await axios.get(`${this.API_URL}/type`);
             const types = data.data.results.map(type => { return {name: type.name} });
             const newTypes = await Type.bulkCreate(types);
             return newTypes;
@@ -160,6 +160,5 @@ class Pokemons {
         return typesBD;
     }
 }
-
 
 module.exports = Pokemons;
