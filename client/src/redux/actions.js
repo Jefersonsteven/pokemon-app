@@ -9,6 +9,7 @@ export const ORDER_ASCENDENT_OR_DESCENDENT = 'ORDER_ASCENDENT_OR_DESCENDENT';
 export const ORDER_A_Z_OR_Z_A = 'ORDER_A_Z_OR_Z_A';
 export const ORDER_ATTACK = 'ORDER_ATTACK';
 export const SET_POKEMON = 'SET_POKEMON';
+export const SET_POKEMON_DETAIL = 'SET_POKEMON_DETAIL';
 
 //* async
 export const findPokemons = (route = 'http://localhost:3001/api/pokemons') => {
@@ -79,4 +80,8 @@ export const orderAttack = (filter) => {
 
 export const setPokemon = () => {
     return { type: SET_POKEMON, payload: {} }
+}
+
+export const setPokemonDetail = () => {
+    return { type: SET_POKEMON_DETAIL, payload: {} }
 }

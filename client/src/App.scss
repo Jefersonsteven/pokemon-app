@@ -36,3 +36,27 @@
         }
     }
 }
+
+@media (min-width: 375px) {
+    .App {
+        & section:nth-child(1) {
+            & h1 {
+                font-size: 2rem;
+            }
+            & a {
+                padding: 12px 35px;
+                gap: 15px;
+            }
+            & svg {
+                transform: scale(120%);
+            }
+        }
+        & section:nth-child(2) {
+            & div {
+                & svg {
+                    transform: scale(120%);
+                }
+            }
+        }
+    }
+}

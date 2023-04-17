@@ -124,3 +124,49 @@
         }
     }
 }
+
+@media (min-width: 375px) {
+    .CreatePokemon {
+        padding-top: 22px;
+        & .Created_Container {
+            & .Created {
+                padding: 60px;
+                & div {
+                    gap: 25px;
+                }
+            }
+        }
+        & .Back {
+            padding: 0 35px;
+        }
+        & .Form {
+            padding-top: 20px;
+            & .Types-select {
+                gap: 20px;
+                padding: 0px 35px;
+                & .Types {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    gap: 15px;
+                    & div {
+                        gap: 15px;
+                        padding: 5px;
+                    }
+                }
+            }
+            & form {
+                gap: 10px;
+                padding: 30px 35px;
+                & div {
+                    width: 100%;
+                    gap: 8px;
+                    & input {
+                        width: 100%;
+                        max-width: 375px;
+                        padding-left: 10px;
+                    }
+                }
+            }
+        }
+    }
+}

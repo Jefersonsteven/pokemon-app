@@ -46,3 +46,14 @@
         }
     }
 }
+
+@media (min-width: 375px) {
+    .CardPokemon {
+        width: 159px;
+        height: 207px;
+        padding: 13px;
+        & .Image {
+            width: 159px;
+        }
+    }
+}

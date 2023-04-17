@@ -31,3 +31,22 @@
         }
     }
 }
+
+@media (min-width: 375px) {
+    .Menu {
+        & .Menu_Container {
+            padding: 30px 35px;
+            & div {
+                display: flex;
+                justify-content: flex-end;
+            }
+            & ul {
+                gap: 50px;
+                font-size: 2.8rem;
+                & li:nth-child(3) {
+                    gap: 20px;
+                }
+            }
+        }
+    }
+}

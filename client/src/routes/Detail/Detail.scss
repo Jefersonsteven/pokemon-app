@@ -20,11 +20,11 @@
         & > div:nth-child(1) {
             display: flex;
             justify-content: center;
-            position: relative;
+            height: 80%;
             & img {
                 width: 182px;
-                position: absolute;
-                top: -180px;
+                position: relative;
+                bottom: 20%;
             }
         }
         & .Stats {
@@ -75,4 +75,22 @@
             }
         }
     }
+}
+
+
+@media (min-width: 375px) {
+    .PokemonDetail_container {
+        display: flex;
+        flex-direction: column;
+        padding: 22px 20px 0px 20px;
+        & .PokemonDetail {
+            gap: 25px;
+            & > div:nth-child(1) {
+                & img {
+                    width: 230px;
+                }
+            }
+        }
+    }
+    
 }

@@ -3,7 +3,7 @@ import './Detail.scss';
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
-import { findPokemonByID } from "../../redux/actions"
+import { findPokemonByID, setPokemonDetail } from "../../redux/actions"
 import { Arrow, StatItem } from "../../components";
 import { Link } from "react-router-dom";
 import getColorPerType from '../../assets/getColorPerType';
@@ -21,11 +21,12 @@ function Detail() {
 
     return (
         <div className="PokemonDetail_container">
-            <div>
+            <div onClick={() => dispatch(setPokemonDetail())}>
                 <Link to="/home">
                     <Arrow/>
                 </Link>
             </div>
+            {!pd && <span>Loading...</span>}
             {pd &&
                 <div className="PokemonDetail">
                     <div>

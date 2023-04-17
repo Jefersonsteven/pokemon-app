@@ -9,7 +9,8 @@ import {
     ORDER_ASCENDENT_OR_DESCENDENT,
     ORDER_A_Z_OR_Z_A,
     ORDER_ATTACK,
-    SET_POKEMON
+    SET_POKEMON,
+    SET_POKEMON_DETAIL
 } from "./actions";
 
 const initialState = {
@@ -164,6 +165,12 @@ function rootReducer(state = initialState, action) {
                 return {
                     ...state,
                     pokemon: action.payload
+                }
+
+            case SET_POKEMON_DETAIL:
+                return {
+                    ...state,
+                    pokemonDetail: action.payload
                 }
 
 
