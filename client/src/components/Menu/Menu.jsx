@@ -1,12 +1,18 @@
+import './Menu.scss';
+
 import React from "react";
-import  { Close_icon, Exit } from "../index";
+import  { Exit, Close_icon } from "../index";
 import { Link } from "react-router-dom";
 
-function Menu() {
+function Menu({ handleBotonMenu }) {
+
     return ( 
         <div className="Menu">
-            <div className="Background"></div>
             <div className="Menu_Container">
+                <div onClick={handleBotonMenu}>
+                    <Close_icon/>
+                </div>
+
                 <ul>
                     <li>
                         <Link to="/home">HOME</Link>
@@ -16,7 +22,7 @@ function Menu() {
                     </li>
                     <li>
                         <Link to="/">EXIT</Link>
-                        <Exit/>.
+                        <Exit />
                     </li>
                 </ul>
             </div>

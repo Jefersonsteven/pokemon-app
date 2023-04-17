@@ -4,19 +4,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { setPokemon } from '../../redux/actions';
 import { useDispatch } from 'react-redux';
+import getColorPerType from '../../assets/getColorPerType';
 
 function Card({ id, image, name, types }) {
     const dispatch = useDispatch();
-
-    function getColorPerType(type) {
-        switch(type) {
-            case 'normal':
-                return '#444242'
-
-            default:
-                return '#000'
-        }
-    }
 
     return ( 
         <div className="CardPokemon">

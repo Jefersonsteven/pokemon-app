@@ -4,11 +4,7 @@ import { Pokeball } from "../index";
 import { Link } from "react-router-dom";
 
 
-function Nav({openMenu, setOpenMenu}) {
-
-    function handleBotonMenu() {
-        openMenu ? setOpenMenu(false) : setOpenMenu(true);
-    }
+function Nav({handleBotonMenu}) {
 
     return (
         <nav className="NavBar">

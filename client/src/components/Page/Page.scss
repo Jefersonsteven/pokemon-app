@@ -14,6 +14,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        gap: 5px;
         & > button {
             width: 40px;
             height: 39px;
@@ -27,13 +28,13 @@
             }
         }
         & .PageNumber {
+            width: 230px;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 10px;
-            padding: 0 20px;
             & button {
-                width: 37px;
+                width: 35px;
                 height: 35px;
                 border-radius: 3px;
                 border: none;

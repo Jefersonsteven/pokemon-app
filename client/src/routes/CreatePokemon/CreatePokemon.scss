@@ -1,0 +1,125 @@
+.CreatePokemon {
+    padding-top: 22px;
+    & .Created_Container {
+        top: 0;
+        right: 0;
+        width: 100dvw;
+        height: 100dvh;
+        position: fixed;
+        background: rgba(255, 255, 255, 0.123);
+        box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+        backdrop-filter: blur( 7.5px );
+        -webkit-backdrop-filter: blur( 7.5px );
+        box-shadow: -4px -2px 4px rgba(0, 0, 0, 0.25);
+        border: 1px solid rgba( 255, 255, 255, 0.18 );
+        border-radius: 3px;
+        z-index: 2;
+        display: grid;
+        justify-items: center;
+        align-items: center;
+        & .Created {
+            width: 80%;
+            max-width: 300px;
+            background: var(--color-principal);
+            box-shadow: 0 8px 32px 0 rgba(42, 10, 95, 0.63);
+            border: 1px solid rgba( 255, 255, 255, 0.18 );
+            border-radius: 5px;
+            padding: 50px;
+            & div {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 20px;
+                    & button {
+                        padding: 7px 25px;
+                        border-radius: 25px;
+                        background: #fff;
+                        color: var(--color-principal);
+                        border: none;
+                        font-family: var(--font);
+                        font-weight: 700;
+                    }
+            }
+        }
+    }
+    & .Back {
+        padding: 0 15px;
+        & a {
+            & svg {
+                transform: rotate(-90deg);
+            }
+        }
+    }
+    & .Form {
+        padding-top: 10px;
+        & .Types-select {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 0px 15px;
+            & p {
+                font-size: 2.4rem;
+            }
+            & > span {
+                height: 20px;
+                color: red;
+            }
+            & .Types {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 5px;
+                & div {
+                    display: flex;
+                    gap: 10px;
+                    background-color: var(--color-principal-dark);
+                    border-radius: 5px;
+                    padding: 3px;
+                }
+            }
+        }
+        & form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            padding: 30px 18px;
+            & div {
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+                & input {
+                    width: 100%;
+                    max-width: 291px;
+                    min-width: 284px;
+                    height: 40px;
+                    border-radius: 5px;
+                    padding-left: 5px;
+                    border: none;
+                    font-family: var(--font);
+                    font-weight: 700;
+                }
+                & span {
+                    height: 20px;
+                    color: red;
+                }
+            }
+            & span {
+                height: 20px;
+                color: red;
+            }
+            & button {
+                padding: 0 20px;
+                max-width: 201px;
+                height: 35px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 5px;
+                border-radius: 25px;
+                border: none;
+                font-weight: 700;
+                font-family: var(--font);
+            }
+        }
+    }
+}

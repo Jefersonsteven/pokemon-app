@@ -36,7 +36,7 @@ class Pokemons {
             const { id, sprites, name, types, stats } = data.data;
             return {
                 id,
-                image: sprites.other.home.front_default,
+                image: sprites.other.home.front_default || sprites.other['official-artwork'].front_default,
                 name, 
                 Types: types.map(type => type.type.name),
                 attack: stats[1].base_stat
@@ -60,7 +60,7 @@ class Pokemons {
             return { 
                 id: p.id,
                 name: p.name,
-                image: p.sprites.other.home.front_default,
+                image: p.sprites.other.home.front_default || p.sprites.other['official-artwork'].front_default,
                 up: p.stats[0].base_stat,
                 attack: p.stats[1].base_stat,
                 defense: p.stats[2].base_stat,

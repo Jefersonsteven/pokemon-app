@@ -2,11 +2,13 @@
     padding: 0 15px;
     display: flex;
     justify-content: space-between;
+    position: relative;
     & .botonMenu {
         display: flex;
         flex-direction: column;
         justify-content: center;
         gap: 5px;
+        z-index: 1;
         & div {
             width: 31px;
             height: 6px;

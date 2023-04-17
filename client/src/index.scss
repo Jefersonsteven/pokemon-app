@@ -4,6 +4,7 @@
     --color-principal: #290C67;
     --color-principal-clear: #533C86;
     --color-principal-dark: #1E1E2B;
+    --font: 'Montserrat Alternates', sans-serif;
 }
 
 * {
@@ -14,16 +15,15 @@
 
 html {
     font-size: 62.5%;
-    height: 100%;
 }
 
 body {
     width: 100vw;
-    height: auto;
+    height: 100vh;
     background: linear-gradient(120.43deg, #402086 -11.38%, #0D0F3E 111.38%);
     background-size: 100% 100%;
     color: white;
-    font-family: 'Montserrat Alternates', sans-serif;
+    font-family: var(--font);
     margin: 0;
     font-size: 1.6rem;
     & #root {

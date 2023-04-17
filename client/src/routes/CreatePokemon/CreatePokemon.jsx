@@ -1,5 +1,7 @@
+import './CreatePokemon.scss';
+
 import React, { useEffect, useState } from "react";
-import { Arrow, Polygon, UserAdd } from '../../components';
+import { Arrow, UserAdd } from '../../components';
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { findTypes, findPokemons } from "../../redux/actions";
@@ -9,7 +11,6 @@ function CreatePokemon() {
 
     const dispatch = useDispatch();
     const types = useSelector(state => state.types);
-    const pokemons = useSelector(state => state.pokemons);
 
 
     const [ created, setCreated ] = useState({});
@@ -122,9 +123,10 @@ function CreatePokemon() {
     }
 
     return (
-        <div>
-            { created?.name &&
-                <div>
+        <div className='CreatePokemon'>
+
+            {created?.name &&
+                <div className="Created_Container">
                     <div className="Created">
                         <div>
                             <h2>Created</h2>
@@ -134,36 +136,39 @@ function CreatePokemon() {
                             </Link>
                         </div>
                     </div>
-                </div>
-            }
+                </div>}
+
             <div className="Back">
                 <Link to="/home">
                     <Arrow />
                 </Link>
             </div>
-            <div>
-            <div className="types_select">
-                        <p>Types</p>
-                        <div className="types">
-                            {types.length > 0 &&
-                                types.map(type => {
-                                    return (
-                                        <div key={type.id}>
-                                            <input
-                                                onChange={handleCheckbox}
-                                                type="checkbox"
-                                                name={type.name}
-                                                value={type.id}
-                                            />
-                                            <span>{type.name}</span>
-                                        </div>
-                                    )
-                                })
-                            }
-                        </div>
 
-                        <span>{errors.types}</span>
+            <div className='Form'>
+
+                <div className="Types-select">
+                    <p>Types</p>
+                    <div className="Types">
+                        {types.length > 0 &&
+                            types.map(type => {
+                                return (
+                                    <div key={type.id}>
+                                        <input
+                                            onChange={handleCheckbox}
+                                            type="checkbox"
+                                            name={type.name}
+                                            value={type.id}
+                                        />
+                                        <span>{type.name}</span>
+                                    </div>
+                                )
+                            })
+                        }
                     </div>
+
+                    <span>{errors.types}</span>
+                </div>
+
                 <form onChange={handleForm} onSubmit={handleSubmit}>
                     <div>
                         <input type="text" placeholder="Name" name="name" />
@@ -212,6 +217,7 @@ function CreatePokemon() {
                         <p>Create Pokemon</p>
                     </button>
                 </form>
+
             </div>
         </div>
     );

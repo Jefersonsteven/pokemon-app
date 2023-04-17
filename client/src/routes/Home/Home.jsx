@@ -17,10 +17,14 @@ function Home() {
 
     const [ openMenu, setOpenMenu ] = useState(false);
 
+    function handleBotonMenu() {
+        openMenu ? setOpenMenu(false) : setOpenMenu(true);
+    }
+
     return ( 
         <div className="Home">
-            <Nav setOpenMenu={setOpenMenu} openMenu={openMenu}/>
-            {openMenu && <Menu/>}
+            <Nav setOpenMenu={setOpenMenu} openMenu={openMenu} handleBotonMenu={handleBotonMenu}/>
+            {openMenu && <Menu handleBotonMenu={handleBotonMenu}/>}
             <SearchBar/>          
             <FilterAndOrder/>
             <Page/>
