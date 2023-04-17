@@ -10,4 +10,4 @@ export function setNamePokemonForClient(name) {
     const eliminateHyphes = lowercase.trim().split('-').join(' ');
 
     return eliminateHyphes;
-}
+} 

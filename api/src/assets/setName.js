@@ -5,4 +5,4 @@ function setNamePokemonForClient(name) {
     return eliminateHyphes;
 }
 
-module.exports = setNamePokemonForClient;
+module.exports = setNamePokemonForClient; 
