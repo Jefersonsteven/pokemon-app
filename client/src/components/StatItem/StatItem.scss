@@ -1,0 +1,22 @@
+.StatItem {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    & .StatBar {
+        width: 189px;
+        height: 29px;
+        border-radius: 25px;
+        background-color: var(--color-principal-clear);
+        & .StatPercetage {
+            border-radius: 25px;
+            height: 29px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding-right: 10px;
+            color: rgb(255, 255, 255);
+            font-weight: 700;
+            min-width: 40px;
+        }
+    }
+}

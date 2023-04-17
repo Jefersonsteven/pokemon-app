@@ -1,11 +1,16 @@
+import './StatItem.scss';
+
 import React from "react";
 
-function StatItem({ title, stat }) {
+function StatItem({ title, stat, color }) {
     return ( 
         <div className="StatItem">
             <p className="StatTitle">{title}</p>
             <div className="StatBar">
-                <div className="StatPercetage">
+                <div 
+                    style={{backgroundColor: color, width: stat / 1.6}}
+                    className="StatPercetage"
+                >
                     <p className="Stat">{stat}</p>
                 </div>
             </div>

@@ -8,6 +8,7 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 14px;
+        justify-items: center;
     }
     & .PageNavigator {
         padding: 32px 0px;
