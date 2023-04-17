@@ -11,7 +11,7 @@ export const ORDER_ATTACK = 'ORDER_ATTACK';
 export const SET_POKEMON = 'SET_POKEMON';
 
 //* async
-export const findPokemons = (route) => {
+export const findPokemons = (route = 'http://localhost:3001/api/pokemons') => {
 
     return async (dispatch) => {
         const data = await fetch(route);
@@ -20,7 +20,7 @@ export const findPokemons = (route) => {
     }
 }
 
-export const findPokemonByName = (name, route) => {
+export const findPokemonByName = (name, route = 'http://localhost:3001/api/pokemons') => {
 
     return async (dispatch) => {
             if (name) {
@@ -34,7 +34,7 @@ export const findPokemonByName = (name, route) => {
     }
 }
 
-export const findPokemonByID = (id, route) => {
+export const findPokemonByID = (id, route = 'http://localhost:3001/api/pokemons') => {
 
     return async (dispatch) => {
         const data = await fetch(`${route}/${id}`);
@@ -43,7 +43,7 @@ export const findPokemonByID = (id, route) => {
     }
 }
 
-export const findTypes = (route) => {
+export const findTypes = (route = 'http://localhost:3001/api/pokemons/types/') => {
 
     return async (dispatch) => {
         const data = await fetch(route);

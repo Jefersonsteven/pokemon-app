@@ -13,8 +13,6 @@ function SearchBar() {
     const [ buttonDisabled, setbuttonDisabled ] = useState(true);
     const pokemon = useSelector(state => state.pokemon);
 
-    const BASE_URL = 'http://localhost:3001/api/pokemons';
-
     function handleInput(event) {
         if(event.target.value) {
             setbuttonDisabled(false);
@@ -43,7 +41,7 @@ function SearchBar() {
                     onClick={() => {
                         handleOpenResult()
                         setSearchValue('')
-                        dispatch(findPokemonByName(searchValue, BASE_URL))
+                        dispatch(findPokemonByName(searchValue))
                     }}
                 >
                     <Search_icon />

@@ -1,5 +1,6 @@
 const {Pokemon, Type} = require('../../../database/db');
 const axios = require('axios');
+const setNamePokemonForClient = require('../../../assets/setName');
 
 class Pokemons {
     constructor(){
@@ -18,18 +19,19 @@ class Pokemons {
                 }
             }
         });
+        
         const responseDB = dataDB?.map(data => {
             const { id, image, name, Types, attack } = data;
             return {
                 id,
                 image,
-                name,
+                name: setNamePokemonForClient(name),
                 Types: Types.map(type => type.name),
                 attack
             }
         })
 
-        const pokemons = await axios.get(`${this.API_URL}/pokemon/?limit=60&offset=0`);
+        const pokemons = await axios.get(`${this.API_URL}/pokemon/?limit=60&offset=5`);
         const results = pokemons.data.results.map(pokemon => axios.get(pokemon.url));
         const dataAPI = await Promise.all(results);
         const responseAPI = dataAPI.map((data) => { 
@@ -84,7 +86,9 @@ class Pokemons {
             }
             const { id, name, image, up, attack, defense, speed, height, weight, Types } = pokemon;
             return { 
-                id, name, image, up, attack, defense, speed, height, weight, 
+                id, 
+                name: setNamePokemonForClient(name), 
+                image, up, attack, defense, speed, height, weight, 
                 Types: Types.map(type => type.name)
             };
         }
@@ -121,7 +125,7 @@ class Pokemons {
             return  {
                 id,
                 image,
-                name: nameBD,
+                name: setNamePokemonForClient(nameBD),
                 Types: Types.map(type => type.name)
             };
         }
@@ -132,7 +136,7 @@ class Pokemons {
         const {name,image,up,attack,defense,speed,height,weight,types} = req.body;
         if(name&&image&&up&&attack&&defense&&types) {
             const newPokemon = await Pokemon.create({
-                name: name.toLowerCase(),
+                name,
                 image,
                 up,
                 attack,

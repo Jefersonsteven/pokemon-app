@@ -12,10 +12,9 @@ function Detail() {
     const { pokemonId } = useParams();
     const dispatch = useDispatch();
     const pd = useSelector(state => state.pokemonDetail[0]);
-    const BASE_URL = 'http://localhost:3001/api/pokemons'
 
     useEffect(() => {
-        dispatch(findPokemonByID(pokemonId, BASE_URL));
+        dispatch(findPokemonByID(pokemonId));
     },[])
 
     

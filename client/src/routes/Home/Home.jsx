@@ -11,8 +11,8 @@ function Home() {
     const types = useSelector(state => state.types);
 
     if(types.length === 0 && pokemons.length === 0) {
-        dispatch(findPokemons('http://localhost:3001/api/pokemons'));
-        dispatch(findTypes('http://localhost:3001/api/pokemons/types/'));
+        dispatch(findPokemons());
+        dispatch(findTypes());
     }
 
     const [ openMenu, setOpenMenu ] = useState(false);

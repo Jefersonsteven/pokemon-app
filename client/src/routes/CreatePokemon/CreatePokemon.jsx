@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { findTypes, findPokemons } from "../../redux/actions";
 import validateForm from "../../assets/valideForm";
+import { setNamePokemonForBD, setNamePokemonForClient } from '../../assets/setName';
 
 function CreatePokemon() {
 
@@ -15,10 +16,10 @@ function CreatePokemon() {
 
     const [ created, setCreated ] = useState({});
     useEffect(()=>{
-        dispatch(findPokemons('http://localhost:3001/api/pokemons'));
+        dispatch(findPokemons());
     },[created]);
     if (types.length === 0) {
-        dispatch(findTypes('http://localhost:3001/api/pokemons/types/'));
+        dispatch(findTypes());
     }
         
         
@@ -82,7 +83,7 @@ function CreatePokemon() {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    name: name.toLowerCase(),
+                    name: setNamePokemonForBD(name),
                     image,
                     up: Math.floor(up),
                     attack: Math.floor(attack),
@@ -105,7 +106,7 @@ function CreatePokemon() {
                 weight: 0,
                 types: []
             })
-            setCreated({name: data.data.name});
+            setCreated({name: setNamePokemonForClient(data.data.name)});
         }
     }
 
