@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const Pokemons = require('../services/pokemons');
+const Pokemons = require('../services/pokemons.service');
 const newPokemons = new Pokemons();
 
 const pokemons = Router();

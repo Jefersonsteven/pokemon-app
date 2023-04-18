@@ -1,10 +1,13 @@
+require('dotenv').config();
 const {Pokemon, Type} = require('../../../database/db');
 const axios = require('axios');
 const setNamePokemonForClient = require('../../../assets/setName');
 
+const { API_BASE_URL } = process.env;
+
 class Pokemons {
     constructor(){
-        this.API_URL = 'https://pokeapi.co/api/v2';
+        this.API_URL = API_BASE_URL;
     }
 
     // funcion que responde con 60 pokemons de la API y los que contenga la base de datos. ✔️
@@ -71,26 +74,32 @@ class Pokemons {
                 weight: p.weight || null,
                 Types: p.types.map(type => type.type.name)
             };
-        } catch {
-            const pokemon = await Pokemon.findByPk(idPokemon, {
-                include: {
-                    model: Type,
-                    attributes: ["name"],
-                    through: {
-                        attributes: [],
+        } catch (errorAPI){
+            try {
+                const pokemon = await Pokemon.findByPk(idPokemon, {
+                    include: {
+                        model: Type,
+                        attributes: ["name"],
+                        through: {
+                            attributes: [],
+                        }
                     }
+                });
+                if (pokemon) {
+                    const { id, name, image, up, attack, defense, speed, height, weight, Types } = pokemon;
+                    return { 
+                        id, 
+                        name: setNamePokemonForClient(name), 
+                        image, up, attack, defense, speed, height, weight, 
+                        Types: Types.map(type => type.name)
+                    };
                 }
-            });
-            if (!pokemon) {
-                throw Error("Pokemon Not found" );
+            } catch (errorDB) {
+                res.status(404).json({
+                    errorAPI: errorAPI.message,
+                    errorDB: errorDB.message
+                })
             }
-            const { id, name, image, up, attack, defense, speed, height, weight, Types } = pokemon;
-            return { 
-                id, 
-                name: setNamePokemonForClient(name), 
-                image, up, attack, defense, speed, height, weight, 
-                Types: Types.map(type => type.name)
-            };
         }
     }
 
@@ -106,28 +115,36 @@ class Pokemons {
                 image: sprites.other.home.front_default || sprites.other['official-artwork'].front_default,
                 Types: types.map(type => type.type.name)
             };
-        } catch {
-            const pokemon = await Pokemon.findOne({
-                where: { name: NAME.toLowerCase() },
-                include: {
-                    model: Type,
-                    attributes: ["name"],
-                    through: {
-                        attributes: [],
+        } catch (errorAPI){
+            try {
+                const pokemon = await Pokemon.findOne({
+                    where: { name: NAME.toLowerCase() },
+                    include: {
+                        model: Type,
+                        attributes: ["name"],
+                        through: {
+                            attributes: [],
+                        }
                     }
+                })
+                const { id, Types, image } = pokemon;
+                const nameBD = pokemon.name;
+                if (pokemon) {
+                    return  {
+                        id,
+                        image,
+                        name: setNamePokemonForClient(nameBD),
+                        Types: Types.map(type => type.name)
+                    };
                 }
-            })
-            if (!pokemon) {
-                throw Error("Pokemon Not found");
+            } catch (errorDB) {
+                res.status(404).json({
+                    errorAPI: errorAPI.message,
+                    errorDB: errorDB.message
+                })
             }
-            const { id, Types, image } = pokemon;
-            const nameBD = pokemon.name;
-            return  {
-                id,
-                image,
-                name: setNamePokemonForClient(nameBD),
-                Types: Types.map(type => type.name)
-            };
+            
+            
         }
     }
 
