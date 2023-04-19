@@ -74,3 +74,19 @@
         }
     }
 }
+
+@media (min-width: 1366px) {
+    .CardPokemon {
+        width: 225px;
+        height: 287px;
+        padding: 25px;
+        & .Image {
+            width: 225px;
+        }
+        & .Info {
+            & .Types {
+                overflow-x: hidden;
+            }
+        }
+    }
+}

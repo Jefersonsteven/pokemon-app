@@ -8,17 +8,17 @@ import { useDispatch, useSelector } from "react-redux";
 function FilterAndOrder() {
     const dispatch = useDispatch();
     const types = useSelector(state => state.types);
-    const [ openFilter, setOpenFilter ] = useState(false);
-    const [ openOrder, setOpenOrder ] = useState(false);
+    const [ openFilter, setOpenFilter ] = useState({display: 'none'});
+    const [ openOrder, setOpenOrder ] = useState({display: 'none'});
     
     function handlerOpenFilter() {
-        openFilter ? setOpenFilter(false) : setOpenFilter(true);
-        openOrder && setOpenOrder(false);
+        openFilter.display === 'flex' ? setOpenFilter({display: 'none'}) : setOpenFilter({display: 'flex'});
+        openOrder && setOpenOrder({display: 'none'});
     }
 
     function handlerOpenOrder() {
-        openOrder ? setOpenOrder(false) : setOpenOrder(true);
-        openFilter && setOpenFilter(false);
+        openOrder.display === 'flex' ? setOpenOrder({display: 'none'}) : setOpenOrder({display: 'flex'});
+        openFilter && setOpenFilter({display: 'none'});
     }
 
     return (
@@ -27,8 +27,7 @@ function FilterAndOrder() {
                 <div onClick={handlerOpenFilter}>
                     <Filter_icon />
                 </div>
-                {openFilter &&
-                    <div className="Filter-options">
+                    <div className="Filter-options" style={openFilter}>
                         <div onClick={handlerOpenFilter}>                        
                         <Close_icon />
                         </div>
@@ -61,14 +60,14 @@ function FilterAndOrder() {
                         <option value="Data Base">Data base</option>
                         <option value="API">API</option>
                         </select>
-                    </div>}
+                    </div>
             </div>
             <div className="Order">
                 <div onClick={handlerOpenOrder}>
                     <Order_icon />
                 </div>
-                {openOrder &&
-                <div className="Order-options">
+
+                <div className="Order-options" style={openOrder}>
                     <div onClick={handlerOpenOrder}>                        
                         <Close_icon />
                     </div>
@@ -78,7 +77,7 @@ function FilterAndOrder() {
                     <button onClick={() => dispatch(orderAZorZA("Z-A"))}>Z - A</button>
                     <button onClick={() => dispatch(orderAttack("Lesser attack"))}>Lesser attack <Arrow/></button>
                     <button onClick={() => dispatch(orderAttack("Major attack"))}>Major attack <Arrow/></button>
-                </div>}
+                </div>
             </div>
         </div>
     );
