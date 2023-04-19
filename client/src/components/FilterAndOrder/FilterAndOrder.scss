@@ -74,3 +74,64 @@
         }
     }
 }
+
+@media (min-width: 744px) {
+    @mixin Button($left, $top, $right, $botton ){
+        width: 64px;
+        height: 58px;
+    }
+    
+    .FilterAndOrder {
+        & div {
+            position: relative;
+            & div:nth-child(2) {
+                width: 260px;
+                gap: 15px;
+                & div {
+                    margin: 15px;
+                }
+                & select, button {
+                    padding: 5px;
+                    margin: 0px 10px 10px 10px;
+                    height: 58px;
+                    font-size: 2rem;
+                    padding: 0px 15px;
+                }
+            }
+        }
+        & .Filter {
+            & > div:nth-child(1) {
+                @include Button(0px, 3px, 3px, 0px);
+            }
+            & .Filter-options {
+                top: 0;
+                left: 0;
+                border-radius: 0 5px 5px 0px;
+            }
+        }
+        & .Order {
+            & > div:nth-child(1) {
+                @include Button(3px, 0px, 0px, 3px);
+            }
+            & .Order-options {
+                top: 0;
+                right: 0;
+                border-radius: 5px 0 0 5px;
+                & div {
+                    display: flex;
+                    justify-content: flex-end;
+                }
+                & button {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                }
+                & button:nth-child(3), button:nth-child(6) {
+                    & svg {
+                        transform: rotate(180deg);
+                    }
+                }
+            }
+        }
+    }
+}

@@ -50,41 +50,47 @@ function rootReducer(state = initialState, action) {
 
 
         case FILTER_PER_TYPES:
-            if(action.payload === 'Alls types') {
-                return {
-                    ...state,
-                    filterAndOrder: state.pokemons
-                }
-            } else {
-                return {
-                    ...state,
-                    filterAndOrder: state.pokemons.filter(pokemon => {
-                        return pokemon.Types?.includes(action.payload);
-                    })
+            if(action.payload !== 'Types') {
+
+                if(action.payload === 'Alls types') {
+                    return {
+                        ...state,
+                        filterAndOrder: [...state.pokemons]
+                    }
+                } else {
+                    return {
+                        ...state,
+                        filterAndOrder: state.pokemons.filter(pokemon => {
+                            return pokemon.Types?.includes(action.payload);
+                        })
+                    }
                 }
             }
+        break;
 
 
         case FILTER_PER_ORIGIN:
-            if(action.payload === 'Alls Origins') {
-                return {
-                    ...state,
-                    filterAndOrder: state.pokemons
+            if(action.payload !== 'Origin') {
+                if(action.payload === 'Alls Origins') {
+                    return {
+                        ...state,
+                        filterAndOrder: [...state.pokemons]
+                    }
                 }
-            }
-            if(action.payload === 'API') {
-                return {
-                    ...state,
-                    filterAndOrder: state.pokemons.filter(pokemon => {
-                        return typeof pokemon.id === typeof 1
-                    })
-                }
-            } else {
-                return {
-                    ...state,
-                    filterAndOrder: state.pokemons.filter(pokemon => {
-                        return typeof pokemon.id === typeof "1"
-                    })
+                if(action.payload === 'API') {
+                    return {
+                        ...state,
+                        filterAndOrder: state.pokemons.filter(pokemon => {
+                            return typeof pokemon.id === typeof 1
+                        })
+                    }
+                } else {
+                    return {
+                        ...state,
+                        filterAndOrder: state.pokemons.filter(pokemon => {
+                            return typeof pokemon.id === typeof "1"
+                        })
+                    }
                 }
             }
 

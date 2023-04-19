@@ -19,7 +19,8 @@ function App() {
                 </section>
                 <section>
                     <div>
-                        <Pikachu_ash/>
+                        <img src="./assets/images/pickachu-ash.png" alt="pikachu and ash"/>
+                        {/* <Pikachu_ash/> */}
                     </div>
                 </section>
             </div>

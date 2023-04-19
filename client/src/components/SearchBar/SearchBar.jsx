@@ -5,6 +5,7 @@ import Search_icon from "../svgs/Search_icon";
 import { useDispatch, useSelector } from 'react-redux';
 import { findPokemonByName, setPokemon } from "../../redux/actions";
 import { Card, Close_icon } from '../index';
+import { setNamePokemonForBD } from "../../assets/setName";
 
 function SearchBar() {
     const dispatch = useDispatch();
@@ -41,7 +42,7 @@ function SearchBar() {
                     onClick={() => {
                         handleOpenResult()
                         setSearchValue('')
-                        dispatch(findPokemonByName(searchValue))
+                        dispatch(findPokemonByName(setNamePokemonForBD(searchValue)))
                     }}
                 >
                     <Search_icon />

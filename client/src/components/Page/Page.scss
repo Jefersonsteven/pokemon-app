@@ -4,7 +4,7 @@
     flex-direction: column;
     justify-content: space-between;
     & .Page_container {
-        padding: 0 15px;
+        padding: 0 35px;
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 14px;
@@ -40,6 +40,48 @@
                 border-radius: 3px;
                 border: none;
                 font-weight: 800;
+            }
+        }
+    }
+}
+
+@media (min-width: 744px) {
+    .Page {
+        padding-top: 30px;
+        & .Page_container {
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 14px;
+            justify-items: center;
+        }
+        & .PageNavigator {
+            padding: 35px 0px;
+            & > button {
+                width: 55px;
+                height: 54px;
+                background-color: #D9D0FF;
+                border: none;
+                border-radius: 0 0 5px 5px;
+                & svg {
+                    & path {
+                        fill: black;
+                    }
+                }
+            }
+            & .PageNumber {
+                width: 80%;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 20px;
+                & button {
+                    width: 55px;
+                    height: 55px;
+                    border-radius: 3px;
+                    border: none;
+                    font-weight: 800;
+                }
             }
         }
     }

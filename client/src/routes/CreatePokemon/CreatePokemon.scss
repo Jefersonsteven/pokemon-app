@@ -62,7 +62,7 @@
             }
             & > span {
                 height: 20px;
-                color: red;
+                color: rgb(216, 98, 98);
             }
             & .Types {
                 display: grid;
@@ -74,6 +74,7 @@
                     background-color: var(--color-principal-dark);
                     border-radius: 5px;
                     padding: 3px;
+                    text-transform: capitalize;
                 }
             }
         }
@@ -101,12 +102,12 @@
                 }
                 & span {
                     height: 20px;
-                    color: red;
+                    color: rgb(216, 98, 98);
                 }
             }
             & span {
                 height: 20px;
-                color: red;
+                color: rgb(216, 98, 98);
             }
             & button {
                 padding: 0 20px;
@@ -165,6 +166,83 @@
                         max-width: 375px;
                         padding-left: 10px;
                     }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 744px) {
+    .CreatePokemon {
+        padding-top: 35px;
+        & .Created_Container {
+            & .Created {
+                max-width: 450px;
+                padding: 60px;
+                & div {
+                    gap: 45px;
+                    & h2 {
+                        font-size: 4rem;
+                    }
+                    & p {
+                        font-size: 2.4rem;
+                    }
+                    & a {
+                        & button {
+                            padding: 10px 45px;
+                            font-size: 2rem;
+                        }
+                    }
+                }
+            }
+        }
+        & .Back {
+            padding: 0 35px;
+        }
+        & .Form {
+            padding-top: 40px;
+            & .Types-select {
+                gap: 40px;
+                & p {
+                    font-size: 3.5rem;
+                }
+                & .Types {
+                    grid-template-columns: 1fr 1fr 1fr;
+                    & div {
+                        gap: 30px;
+                        padding: 15px;
+                        font-size: 3rem;
+                        & input {
+                            width: 30px;
+                        }
+                    }
+                }
+            }
+            & form {
+                gap: 20px;
+                padding: 30px 35px;
+                & div {
+                    width: auto;
+                    gap: 15px;
+                    & input {
+                        width: 450px;
+                        height: 60px;
+                        padding-left: 20px;
+                        font-size: 2rem;
+                    }
+                    & span {
+                        font-size: 1.8rem;
+                    }
+                }
+                & span {
+                    font-size: 1.8rem;
+                }
+                & button {
+                    font-size: 1.8rem;
+                    padding: 0 40px;
+                    max-width: 301px;
+                    height: 55px;
+                    gap: 8px;
                 }
             }
         }

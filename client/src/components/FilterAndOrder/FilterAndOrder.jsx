@@ -38,11 +38,12 @@ function FilterAndOrder() {
                             }
                         }
                         >
+                        <option value="Types">Types</option>
                         <option value="Alls types">Alls types</option>
                         { types.length > 0 &&
                             types.map(type => 
                             <option 
-                                key={type.id + "OPTUIID"} 
+                                key={type.id} 
                                 value={type.name}
                             >
                                 {type.name}
@@ -55,6 +56,7 @@ function FilterAndOrder() {
                             }
                         }
                     >
+                        <option value="Origin">Origin</option>
                         <option value="Alls Origins">Alls Origins</option>
                         <option value="Data Base">Data base</option>
                         <option value="API">API</option>

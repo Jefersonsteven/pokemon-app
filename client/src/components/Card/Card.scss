@@ -42,6 +42,7 @@
                 font-size: 1.2rem;
                 padding: 2px 5px;
                 border-radius: 5px;
+                text-shadow: 2px -2px 3px rgba(0, 0, 0, 0.81);
             }
         }
     }
@@ -54,6 +55,22 @@
         padding: 13px;
         & .Image {
             width: 159px;
+        }
+    }
+}
+
+@media (min-width: 744px) {
+    .CardPokemon {
+        width: 205px;
+        height: 267px;
+        padding: 25px;
+        & .Image {
+            width: 205px;
+        }
+        & .Info {
+            & .Name {
+                font-size: 2rem;
+            }
         }
     }
 }
