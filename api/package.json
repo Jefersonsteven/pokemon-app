@@ -4,9 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server/server.js",
-    "dev": "nodemon server/server.js",
-    "test": "mocha -w ./tests/**/*.spec.js"
+    "start": "node ./server/server.js",
+    "dev": "nodemon ./server/server.js"
   },
   "author": "Henry",
   "license": "ISC",
