@@ -9,14 +9,51 @@
         background-color: var(--color-principal-clear);
         & .StatPercetage {
             border-radius: 25px;
-            height: 29px;
+            height: 100%;
             display: flex;
             justify-content: flex-end;
             align-items: center;
             padding-right: 10px;
             color: rgb(255, 255, 255);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.81);
             font-weight: 700;
             min-width: 40px;
+        }
+    }
+}
+
+@media (min-width: 744px) {
+    .StatItem {
+        & .StatTitle {
+            font-size: 3rem;
+        }
+        & .StatBar {
+            width: 400px;
+            height: 40px;
+            & .StatPercetage {
+                padding-right: 10px;
+                color: rgb(255, 255, 255);
+                font-weight: 700;
+                min-width: 40px;
+            }
+        }
+    }
+}
+
+@media (min-width: 1366px) {
+    .StatItem {
+        & .StatTitle {
+            font-size: 3rem;
+        }
+        & .StatBar {
+            width: 400px;
+            height: 40px;
+            & .StatPercetage {
+                padding-right: 10px;
+                color: rgb(255, 255, 255);
+                font-weight: 700;
+                min-width: 40px;
+            }
         }
     }
 }
