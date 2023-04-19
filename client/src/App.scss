@@ -88,3 +88,41 @@
         }
     }
 }
+
+@media (min-width: 1366px) {
+    .App {
+        flex-direction: row-reverse;
+        justify-content: space-around;
+        & section:nth-child(1) {
+            margin: 60px;
+        }
+        & section:nth-child(2) {
+            height: 100%;
+            & div {
+                & img {
+                    width: 600px;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 1600px) {
+    .App {
+        flex-direction: row-reverse;
+        justify-content: space-around;
+        & section:nth-child(1) {
+            margin-right: 60px;
+        }
+        & section:nth-child(2) {
+            height: 100%;
+            & div {
+                & img {
+                    width: 800px;
+                }
+            }
+        }
+    }
+}
+
+

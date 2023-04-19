@@ -68,3 +68,23 @@
         }
     }
 }
+
+@media (min-width: 1366px) {
+    .Menu {
+        display: flex;
+        justify-content: flex-end;
+        & .Menu_Container {
+            & ul {
+                padding-left: 0;
+                gap: 50px;
+                font-size: 5rem;
+                & li:nth-child(3) {
+                    gap: 30px;
+                    & svg {
+                        transform: scale(180%);
+                    }
+                }
+            }
+        }
+    }
+}

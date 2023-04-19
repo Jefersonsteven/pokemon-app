@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { findTypes, findPokemons } from "../../redux/actions";
 import validateForm from "../../assets/valideForm";
 import { setNamePokemonForBD, setNamePokemonForClient } from '../../assets/setName';
+import getColorPerType from '../../assets/getColorPerType';
 
 function CreatePokemon() {
 
@@ -153,7 +154,7 @@ function CreatePokemon() {
                         {types.length > 0 &&
                             types.map(type => {
                                 return (
-                                    <div key={type.id}>
+                                    <div key={type.id} style={{backgroundColor: getColorPerType(type.name)}}>
                                         <input
                                             onChange={handleCheckbox}
                                             type="checkbox"

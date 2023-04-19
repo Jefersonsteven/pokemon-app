@@ -75,6 +75,7 @@
                     border-radius: 5px;
                     padding: 3px;
                     text-transform: capitalize;
+                    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.81);
                 }
             }
         }
@@ -159,6 +160,7 @@
                 gap: 10px;
                 padding: 30px 35px;
                 & div {
+                    align-items: center;
                     width: 100%;
                     gap: 8px;
                     & input {
@@ -244,6 +246,53 @@
                     height: 55px;
                     gap: 8px;
                 }
+            }
+        }
+    }
+}
+
+@media (min-width: 1366px) {
+    .CreatePokemon {
+        padding-top: 35px;
+        & .Form {
+            padding: 40px 30px;
+            display: flex;
+            & .Types-select {
+                gap: 20px;
+                & p {
+                    font-size: 3rem;
+                }
+                & .Types {
+                    & div {
+                        gap: 40px;
+                        padding: 10px;
+                        font-size: 3rem;
+                    }
+                }
+            }
+            & form {
+                gap: 20px;
+                padding: 30px 35px;
+                & div {
+                    width: auto;
+                    gap: 10px;
+                    & input {
+                        width: 450px;
+                        height: 40px;
+                        padding-left: 20px;
+                        font-size: 2rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 1600px) {
+    .CreatePokemon {
+        & .Form {
+            & form {
+                gap: 14px;
             }
         }
     }
