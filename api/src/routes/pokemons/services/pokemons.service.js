@@ -151,24 +151,20 @@ class Pokemons {
     // funcion que responde crea un pokemon en la base de datos. ✔️
     async createPokemon(req, res) {
         const {name,image,up,attack,defense,speed,height,weight,types} = req.body;
-        if(name&&image&&up&&attack&&defense&&types) {
-            const newPokemon = await Pokemon.create({
-                name,
-                image,
-                up,
-                attack,
-                defense,
-                speed: speed || null,
-                height: height || null,
-                weight: weight || null,
-            })
+        const newPokemon = await Pokemon.create({
+            name,
+            image,
+            up,
+            attack,
+            defense,
+            speed: speed || null,
+            height: height || null,
+            weight: weight || null,
+        })
 
-            newPokemon.addTypes(types);
+        await newPokemon.addTypes(types);
 
-            return newPokemon;
-        } else {
-            throw Error('missing data');
-        }
+        return newPokemon;
     }
 
     // funcion que copia los types de la API a la BD y responde con los types de la base de datos ✔️

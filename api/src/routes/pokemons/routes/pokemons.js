@@ -1,5 +1,6 @@
 const { Router } = require('express');
 const Pokemons = require('../services/pokemons.service');
+const validation = require('../middlewares/validation');
 const newPokemons = new Pokemons();
 
 const pokemons = Router();
@@ -41,7 +42,7 @@ pokemons.get('/:idPokemon', async (req, res) => {
     }
 });
 
-pokemons.post('/', async (req, res) => {
+pokemons.post('/', validation, async (req, res) => {
     try {
         const pokemon = await newPokemons.createPokemon(req, res);
         res.status(201).json({

@@ -12,6 +12,7 @@
     padding: 11px;
     & .Image {
         width: 136px;
+        height: 136px;
         position: absolute;
         top: -30px;
         left: 0;
@@ -55,6 +56,7 @@
         padding: 13px;
         & .Image {
             width: 159px;
+            height: 159px;
         }
     }
 }
@@ -66,6 +68,7 @@
         padding: 25px;
         & .Image {
             width: 205px;
+            height: 205px;
         }
         & .Info {
             & .Name {
@@ -82,6 +85,7 @@
         padding: 25px;
         & .Image {
             width: 225px;
+            height: 225px;
         }
         & .Info {
             & .Types {
