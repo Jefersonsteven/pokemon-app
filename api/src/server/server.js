@@ -15,7 +15,11 @@ server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 server.use(bodyParser.json({ limit: '50mb' }));
 server.use(cookieParser());
 server.use(morgan('dev'));
-server.use(cors());
+//server.use(cors());
+server.use(cors({
+  origin: ['https://pokemon-app-pokedex-jeffer.netlify.app', 'http://localhost:3000'],
+  credentials: true
+}));
 // server.use((req, res, next) => {
 //   const allowedOrigins = [ 'https://pokemon-app-pokedex-jeffer.netlify.app', 'http://localhost:3000'];
 //   const origin = req.headers.origin;
