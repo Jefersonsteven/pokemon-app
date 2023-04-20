@@ -18,7 +18,7 @@ const URL = 'https://pokemon-app-production-0a6e.up.railway.app';
 export const findPokemons = (route = URL) => {
 
     return async (dispatch) => {
-        const data = await fetch(route);
+        const data = await fetch(route, {credentials: 'include'});
         const pokemons = await data.json();
         return dispatch({ type: FIND_POKEMONS, payload: pokemons });
     }
@@ -28,7 +28,7 @@ export const findPokemonByName = (name, route = URL) => {
 
     return async (dispatch) => {
             if (name) {
-                const data = await fetch(`${route}/name/?name=${name}`);
+                const data = await fetch(`${route}/name/?name=${name}`, {credentials: 'include'});
                 const pokemon = await data.json();
                 if(pokemon.name) {
                     return dispatch({ type: FIND_POKEMON_BY_NAME, payload: pokemon });
@@ -41,7 +41,7 @@ export const findPokemonByName = (name, route = URL) => {
 export const findPokemonByID = (id, route = URL) => {
 
     return async (dispatch) => {
-        const data = await fetch(`${route}/${id}`);
+        const data = await fetch(`${route}/${id}`, {credentials: 'include'});
         const pokemon = await data.json();
         return dispatch({ type: FIND_POKEMON_BY_ID, payload: pokemon });
     }
@@ -50,7 +50,7 @@ export const findPokemonByID = (id, route = URL) => {
 export const findTypes = (route = `${URL}/types/`) => {
 
     return async (dispatch) => {
-        const data = await fetch(route);
+        const data = await fetch(route, {credentials: 'include'});
         const types = await data.json();
         return dispatch({ type: FIND_TYPES, payload: types });
     }

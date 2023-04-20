@@ -15,7 +15,7 @@ server.use(bodyParser.json({ limit: '50mb' }));
 server.use(cookieParser());
 server.use(morgan('dev'));
 server.use((req, res, next) => {
-  const allowedOrigins = ['http://localhost:3000', 'https://pokemon-app-pokedex-jeffer.netlify.app'];
+  const allowedOrigins = [ 'https://pokemon-app-pokedex-jeffer.netlify.app', 'http://localhost:3000'];
   const origin = req.headers.origin;
   if (allowedOrigins.includes(origin)) {
     res.setHeader('Access-Control-Allow-Origin', origin);
