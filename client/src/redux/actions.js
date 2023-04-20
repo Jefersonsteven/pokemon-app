@@ -11,14 +11,14 @@ export const ORDER_ATTACK = 'ORDER_ATTACK';
 export const SET_POKEMON = 'SET_POKEMON';
 export const SET_POKEMON_DETAIL = 'SET_POKEMON_DETAIL';
 
-//const URL = 'http://localhost:3001/api/pokemons';
-const URL = 'https://pokemon-app-production-0a6e.up.railway.app';
+const URL = 'http://localhost:3001/api/pokemons';
+//const URL = 'https://pokemon-app-production-0a6e.up.railway.app';
 
 //* async
 export const findPokemons = (route = URL) => {
 
     return async (dispatch) => {
-        const data = await fetch(route, {credentials: 'include'});
+        const data = await fetch(route);
         const pokemons = await data.json();
         return dispatch({ type: FIND_POKEMONS, payload: pokemons });
     }
@@ -28,7 +28,7 @@ export const findPokemonByName = (name, route = URL) => {
 
     return async (dispatch) => {
             if (name) {
-                const data = await fetch(`${route}/name/?name=${name}`, {credentials: 'include'});
+                const data = await fetch(`${route}/name/?name=${name}`);
                 const pokemon = await data.json();
                 if(pokemon.name) {
                     return dispatch({ type: FIND_POKEMON_BY_NAME, payload: pokemon });
@@ -41,7 +41,7 @@ export const findPokemonByName = (name, route = URL) => {
 export const findPokemonByID = (id, route = URL) => {
 
     return async (dispatch) => {
-        const data = await fetch(`${route}/${id}`, {credentials: 'include'});
+        const data = await fetch(`${route}/${id}`);
         const pokemon = await data.json();
         return dispatch({ type: FIND_POKEMON_BY_ID, payload: pokemon });
     }
@@ -50,7 +50,7 @@ export const findPokemonByID = (id, route = URL) => {
 export const findTypes = (route = `${URL}/types/`) => {
 
     return async (dispatch) => {
-        const data = await fetch(route, {credentials: 'include'});
+        const data = await fetch(route);
         const types = await data.json();
         return dispatch({ type: FIND_TYPES, payload: types });
     }
