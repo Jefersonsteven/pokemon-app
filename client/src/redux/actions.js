@@ -11,8 +11,11 @@ export const ORDER_ATTACK = 'ORDER_ATTACK';
 export const SET_POKEMON = 'SET_POKEMON';
 export const SET_POKEMON_DETAIL = 'SET_POKEMON_DETAIL';
 
+//const URL = 'http://localhost:3003/api/pokemons';
+const URL = 'https://pokemon-app-production-cc17.up.railway.app';
+
 //* async
-export const findPokemons = (route = 'http://localhost:3001/api/pokemons') => {
+export const findPokemons = (route = URL) => {
 
     return async (dispatch) => {
         const data = await fetch(route);
@@ -21,7 +24,7 @@ export const findPokemons = (route = 'http://localhost:3001/api/pokemons') => {
     }
 }
 
-export const findPokemonByName = (name, route = 'http://localhost:3001/api/pokemons') => {
+export const findPokemonByName = (name, route = URL) => {
 
     return async (dispatch) => {
             if (name) {
@@ -35,7 +38,7 @@ export const findPokemonByName = (name, route = 'http://localhost:3001/api/pokem
     }
 }
 
-export const findPokemonByID = (id, route = 'http://localhost:3001/api/pokemons') => {
+export const findPokemonByID = (id, route = URL) => {
 
     return async (dispatch) => {
         const data = await fetch(`${route}/${id}`);
@@ -44,7 +47,7 @@ export const findPokemonByID = (id, route = 'http://localhost:3001/api/pokemons'
     }
 }
 
-export const findTypes = (route = 'http://localhost:3001/api/pokemons/types/') => {
+export const findTypes = (route = `${URL}/types/`) => {
 
     return async (dispatch) => {
         const data = await fetch(route);
