@@ -2,10 +2,10 @@
   "name": "api",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./src/server/server.js",
   "scripts": {
     "start": "node ./src/server/server.js",
-    "dev": "nodemon server/server.js"
+    "dev": "nodemon ./src/server/server.js"
   },
   "author": "Henry",
   "license": "ISC",

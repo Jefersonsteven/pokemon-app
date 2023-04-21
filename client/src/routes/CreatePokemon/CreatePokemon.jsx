@@ -8,6 +8,7 @@ import { findTypes, findPokemons } from "../../redux/actions";
 import validateForm from "../../assets/valideForm";
 import { setNamePokemonForBD, setNamePokemonForClient } from '../../assets/setName';
 import getColorPerType from '../../assets/getColorPerType';
+import { URL } from '../../redux/actions';
 
 function CreatePokemon() {
 
@@ -78,7 +79,7 @@ function CreatePokemon() {
         e.preventDefault();
         if(validateForm(form, errors, setErrors)) {
             const { name,image,up,attack,defense,speed,height,weight,types } = form;
-            const response = await fetch('http://localhost:3001/api/pokemons', {
+            const response = await fetch(URL, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
