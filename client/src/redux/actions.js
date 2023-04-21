@@ -12,7 +12,7 @@ export const SET_POKEMON = 'SET_POKEMON';
 export const SET_POKEMON_DETAIL = 'SET_POKEMON_DETAIL';
 
 //export const URL = 'http://localhost:3001/api/pokemons';
-export const URL = 'https://pokemon-app-production-9759.up.railway.app/api/pokemons';
+export const URL = 'https://pokemon-api-jeffer.onrender.com/api/pokemons';
 
 //* async
 export const findPokemons = (route = URL) => {

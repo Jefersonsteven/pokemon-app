@@ -1,11 +1,22 @@
 import './App.scss';
 
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Home, Pokemon_logo, Pikachu_ash, } from './components/index';
+import { useDispatch, useSelector } from 'react-redux';
+import { findPokemons, findTypes } from './redux/actions';
 
 
 function App() {
+    const dispatch = useDispatch();
+    const types = useSelector(state => state.types);
+    const pokemons = useSelector(state => state.pokemons);
+
+    useEffect(()=>{ 
+            dispatch(findPokemons()); 
+            dispatch(findTypes());
+    },[])
+
     return ( 
         <>
             <div className='App'>
