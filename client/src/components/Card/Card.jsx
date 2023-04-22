@@ -12,7 +12,7 @@ function Card({ id, image, name, types }) {
     return (
         <div className="CardPokemon">
             {!image && <span>Loading</span>}
-            <img className="Image" src={image} alt={name} onerror="this.src='../../assets/images/default-card.png';" />
+            <img className="Image" src={image} alt={name} onError={(event) => event.target.src = '../../assets/images/default-card.png'} />
             <div className="Info">
                 <h3 className="Name" onClick={() => dispatch(setPokemon())}>
                     <Link to={`/pokemon/${id}`}>{name}</Link>
