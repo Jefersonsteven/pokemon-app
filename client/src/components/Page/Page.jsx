@@ -1,6 +1,6 @@
 import './Page.scss';
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { Arrow, Card } from "../index";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentPage } from "../../redux/actions";
@@ -11,11 +11,15 @@ function Page() {
     const pokemons = useSelector(state => state.filterAndOrder);
     const numberOfPokemonsPerPages = 12;
 
-    // * ❔
-    let countPage = [];
-    for (let i = 1; i < (pokemons.length / numberOfPokemonsPerPages) + 1 ; i++) {
-        countPage.push(i);
-    }
+    const countPage = useMemo(() => {
+        if (numberOfPokemonsPerPages <= 0 || pokemons.length === 0) {
+            return [];
+        }
+        return Array.from(
+            { length: Math.ceil(pokemons.length / numberOfPokemonsPerPages) },
+            (_, i) => i + 1
+        );
+    }, [numberOfPokemonsPerPages, pokemons]);
 
     const Start = currentPage * numberOfPokemonsPerPages;
     const End = Start + numberOfPokemonsPerPages;
@@ -30,14 +34,14 @@ function Page() {
                     page.map(({ id, image, name, Types }) => <Card key={id} id={id} image={image} name={name} types={Types} />)
                 }
             </div>
-            
+
             <div className="PageNavigator">
 
 
                 <button
                     style={{ transform: 'rotate(-90deg)' }}
                     className='Previous'
-                    onClick={(() => currentPage > 0 &&  dispatch(setCurrentPage(currentPage - 1)))}
+                    onClick={(() => currentPage > 0 && dispatch(setCurrentPage(currentPage - 1)))}
                 >
                     <Arrow />
                 </button>
@@ -47,28 +51,28 @@ function Page() {
                         countPage.length > 0 &&
                         countPage.map(num => {
                             return (
-                            <button
-                                disabled={false}
-                                onClick={(event => dispatch(setCurrentPage(event.target.value - 1)))}
-                                key={num} 
-                                value={num}
-                                style={num === (currentPage + 1) ? { backgroundColor: '#ffffff' }: { backgroundColor: '#554D79', color: '#fff' } }
-                            > 
-                                {num}
-                            </button>
+                                <button
+                                    disabled={false}
+                                    onClick={(event => dispatch(setCurrentPage(event.target.value - 1)))}
+                                    key={num}
+                                    value={num}
+                                    style={num === (currentPage + 1) ? { backgroundColor: '#ffffff' } : { backgroundColor: '#554D79', color: '#fff' }}
+                                >
+                                    {num}
+                                </button>
                             )
                         })
                     }
                 </div>
 
 
-                    <button
-                        style={{ transform: 'rotate(90deg)' }}
-                        className='Next'
-                        onClick={(() => currentPage < countPage.length - 1 && dispatch(setCurrentPage(currentPage + 1)))}
-                    >
-                        <Arrow />
-                    </button>
+                <button
+                    style={{ transform: 'rotate(90deg)' }}
+                    className='Next'
+                    onClick={(() => currentPage < countPage.length - 1 && dispatch(setCurrentPage(currentPage + 1)))}
+                >
+                    <Arrow />
+                </button>
 
             </div>
         </div>
