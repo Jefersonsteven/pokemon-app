@@ -18,6 +18,8 @@
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.81);
             font-weight: 700;
             min-width: 40px;
+            animation: start 500ms;
+            transition: all ease-out;
         }
     }
 }
@@ -56,4 +58,13 @@
             }
         }
     }
+}
+
+@keyframes start {
+    0% {width: 100%;}
+    10% {width: 20%;}
+    20% {width: 80%;}
+    30% {width: 50%;}
+    40% {width: 100%;}
+    100% {width: auto;}
 }

@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { findPokemonByID, setPokemonDetail } from "../../redux/actions"
-import { Arrow, StatItem } from "../../components";
+import { Arrow, Loading, StatItem } from "../../components";
 import { Link } from "react-router-dom";
 import getColorPerType from '../../assets/getColorPerType';
 
@@ -26,7 +26,7 @@ function Detail() {
                     <Arrow />
                 </Link>
             </div>
-            {!pd && <span>Loading...</span>}
+            {!pd && <Loading />}
             {pd &&
                 <div className="PokemonDetail">
                     <div>

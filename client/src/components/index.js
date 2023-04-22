@@ -1,22 +1,23 @@
-import Home from './svgs/Home';
-import Pokemon_logo from './svgs/Pokemon-logo';
-import Pikachu_ash from './svgs/Picachu_ash';
+import Home from "./svgs/Home";
+import Pokemon_logo from "./svgs/Pokemon-logo";
+import Pikachu_ash from "./svgs/Picachu_ash";
 import Pokeball from "./svgs/Pokeball";
 import Search_icon from "./svgs/Search_icon";
 import Filter_icon from "./svgs/Filter_icon";
 import Order_icon from "./svgs/Order_icon";
 import Close_icon from "./svgs/Close_icon";
-import Exit from './svgs/Exit';
+import Exit from "./svgs/Exit";
 import Arrow from "./svgs/Arrow";
-import Polygon from './svgs/Polygon';
-import UserAdd from './svgs/UserAdd';
+import Polygon from "./svgs/Polygon";
+import UserAdd from "./svgs/UserAdd";
 import Nav from "./Nav/Nav";
 import SearchBar from "./SearchBar/SearchBar";
 import FilterAndOrder from "./FilterAndOrder/FilterAndOrder";
 import Card from "./Card/Card";
 import Page from "./Page/Page";
-import StatItem from './StatItem/StatItem'
-import Menu from './Menu/Menu'
+import StatItem from "./StatItem/StatItem";
+import Menu from "./Menu/Menu";
+import Loading from "./Loading/Loading";
 
 export {
     Home,
@@ -37,6 +38,6 @@ export {
     Menu,
     Exit,
     Polygon,
-    UserAdd
+    UserAdd,
+    Loading,
 };
-
