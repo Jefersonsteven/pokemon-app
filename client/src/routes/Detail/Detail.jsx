@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { findPokemonByID, setPokemonDetail } from "../../redux/actions"
-import { Arrow, StatItem } from "../../components";
+import { Arrow, Loading, StatItem } from "../../components";
 import { Link } from "react-router-dom";
 import getColorPerType from '../../assets/getColorPerType';
 
@@ -15,35 +15,35 @@ function Detail() {
 
     useEffect(() => {
         dispatch(findPokemonByID(pokemonId));
-    },[])
+    }, [])
 
-    
+
 
     return (
         <div className="PokemonDetail_container">
             <div onClick={() => dispatch(setPokemonDetail())}>
                 <Link to="/home">
-                    <Arrow/>
+                    <Arrow />
                 </Link>
             </div>
-            {!pd && <span>Loading...</span>}
+            {!pd && <Loading />}
             {pd &&
                 <div className="PokemonDetail">
                     <div>
-                        <img src={pd.image} alt="pd.name"/>
+                        <img src={pd.image} alt="pd.name" />
                     </div>
                     <h2>{`${pd.name}`}</h2>
                     <div className="Stats">
-                        <StatItem title="Up" stat={pd.up} color={'#27AE60'}/>
-                        <StatItem title="Attack" stat={pd.attack} color={'#EB5757'}/>
-                        <StatItem title="Defense" stat={pd.defense} color={'#2D9CDB'}/>
-                        {pd.speed && <StatItem title="Speed" stat={pd?.speed} color={'#F2C94C'}/>}
+                        <StatItem title="Up" stat={pd.up} color={'#27AE60'} />
+                        <StatItem title="Attack" stat={pd.attack} color={'#EB5757'} />
+                        <StatItem title="Defense" stat={pd.defense} color={'#2D9CDB'} />
+                        {pd.speed && <StatItem title="Speed" stat={pd?.speed} color={'#F2C94C'} />}
                     </div>
                     <div className='MoreStats'>
                         <div className="Types">
                             <p>types</p>
                             <div className="Types_Container">
-                                {pd?.Types.map((type, index) => <span key={index + pd.up} style={{backgroundColor: getColorPerType(type)}}>{type}</span>)}
+                                {pd?.Types.map((type, index) => <span key={index + pd.up} style={{ backgroundColor: getColorPerType(type) }}>{type}</span>)}
                             </div>
                         </div>
                         <div className="MasInfo">

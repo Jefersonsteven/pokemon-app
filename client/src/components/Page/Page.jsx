@@ -1,7 +1,7 @@
 import './Page.scss';
 
 import React, { useEffect, useState, useMemo } from "react";
-import { Arrow, Card } from "../index";
+import { Arrow, Card, Loading } from "../index";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentPage } from "../../redux/actions";
 
@@ -27,8 +27,8 @@ function Page() {
 
     return (
         <div className="Page">
+            {pokemons.length === 0 && <Loading />}
             <div className='Page_container'>
-                {pokemons.length === 0 && <span>Loading...</span>}
                 {
                     pokemons.length > 0 &&
                     page.map(({ id, image, name, Types }) => <Card key={id} id={id} image={image} name={name} types={Types} />)
