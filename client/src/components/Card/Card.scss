@@ -49,6 +49,9 @@
         }
     }
 }
+.CardPokemon:hover {
+    animation: rotate3D 500ms;
+}
 
 @media (min-width: 375px) {
     .CardPokemon {
@@ -93,5 +96,19 @@
                 overflow-x: hidden;
             }
         }
+    }
+}
+
+
+
+@keyframes rotate3D {
+    0% {
+        transform: rotate3d(1, 1, 1, 5deg);
+    }
+    50% {
+        transform: rotate3d(1, 1, 1, -2deg);
+    }
+    100% {
+        transform: rotate3d(1, 1, 1, -1deg);
     }
 }

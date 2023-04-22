@@ -13,6 +13,8 @@
         justify-content: space-between;
         align-items: center;
         flex-direction: column;
+        animation: zoom 1s;
+        transition: all ease-in-out; 
         & h1 {
             font-size: 1.6rem;
         }
@@ -26,6 +28,15 @@
             background: #fff;
             color: var(--color-principal);
         }
+        & a:hover {
+            color: #fff;
+            background: var(--color-principal);
+            & svg {
+                & path {
+                    fill: #fff;
+                }
+            }
+        }
     }
     & section:nth-child(2) {
         display: flex;
@@ -35,6 +46,8 @@
             display: flex;
             & img {
                 width: 252px;
+                animation: pikash 1s;
+                transition: all ease-in;
             }
         }
     }
@@ -126,3 +139,32 @@
 }
 
 
+@keyframes pikash {
+    0% {
+        transform: translateY(100%);
+    }
+
+    100% {
+        transform: translateY(0%);
+    }
+}
+
+@keyframes zoom {
+    0% {
+        width: 0%;
+        height: 0%;
+        opacity: 0;
+    }
+
+    50% {
+        width: 20%;
+        height: 25%;
+        opacity: 0.1;
+    }
+
+    100% {
+        width: auto;
+        height: 50%;
+        opacity: 1;
+    }
+}
