@@ -10,7 +10,7 @@ import {
     ORDER_A_Z_OR_Z_A,
     ORDER_ATTACK,
     SET_POKEMON,
-    SET_POKEMON_DETAIL
+    SET_POKEMON_DETAIL,
 } from "./actions";
 
 const initialState = {
@@ -20,165 +20,167 @@ const initialState = {
     currentPage: 0,
     pokemon: [],
     pokemonDetail: [],
-
 };
 
 function rootReducer(state = initialState, action) {
     switch (action.type) {
-
-
         case FIND_POKEMONS:
             return {
                 ...state,
                 pokemons: action.payload,
-                filterAndOrder: action.payload
-            }
-
+                filterAndOrder: action.payload,
+            };
 
         case SET_CURRENT_PAGE:
             return {
                 ...state,
-                currentPage: action.payload
-            }
-
+                currentPage: action.payload,
+            };
 
         case FIND_TYPES:
             return {
                 ...state,
-                types: action.payload
-            }
-
+                types: action.payload,
+            };
 
         case FILTER_PER_TYPES:
-            if(action.payload !== 'Types') {
-
-                if(action.payload === 'Alls types') {
+            if (action.payload !== "Types") {
+                if (action.payload === "Alls types") {
                     return {
                         ...state,
-                        filterAndOrder: [...state.pokemons]
-                    }
+                        filterAndOrder: [...state.pokemons],
+                    };
                 } else {
                     return {
                         ...state,
-                        filterAndOrder: state.pokemons.filter(pokemon => {
+                        filterAndOrder: state.pokemons.filter((pokemon) => {
                             return pokemon.Types?.includes(action.payload);
-                        })
-                    }
+                        }),
+                    };
                 }
             }
-        break;
-
+            break;
 
         case FILTER_PER_ORIGIN:
-            if(action.payload !== 'Origin') {
-                if(action.payload === 'Alls Origins') {
+            if (action.payload !== "Origin") {
+                if (action.payload === "Alls Origins") {
                     return {
                         ...state,
-                        filterAndOrder: [...state.pokemons]
-                    }
+                        filterAndOrder: [...state.pokemons],
+                    };
                 }
-                if(action.payload === 'API') {
+                if (action.payload === "API") {
                     return {
                         ...state,
-                        filterAndOrder: state.pokemons.filter(pokemon => {
-                            return typeof pokemon.id === typeof 1
-                        })
-                    }
+                        filterAndOrder: state.pokemons.filter((pokemon) => {
+                            return pokemon.id < 1200;
+                        }),
+                    };
                 } else {
                     return {
                         ...state,
-                        filterAndOrder: state.pokemons.filter(pokemon => {
-                            return typeof pokemon.id === typeof "1"
-                        })
-                    }
+                        filterAndOrder: state.pokemons.filter((pokemon) => {
+                            return pokemon.id >= 1200;
+                        }),
+                    };
                 }
             }
 
-
         case ORDER_ASCENDENT_OR_DESCENDENT:
-            if(action.payload === 'Ascendent') {
+            if (action.payload === "Ascendent") {
                 return {
                     ...state,
-                    filterAndOrder: [...state.filterAndOrder.sort((a, b) => b.id - a.id)],
-                    
-                }
+                    filterAndOrder: [
+                        ...state.filterAndOrder.sort((a, b) => b.id - a.id),
+                    ],
+                };
             } else {
                 return {
                     ...state,
-                    filterAndOrder: [...state.filterAndOrder.sort((a, b) => a.id - b.id)]
-                }
+                    filterAndOrder: [
+                        ...state.filterAndOrder.sort((a, b) => a.id - b.id),
+                    ],
+                };
             }
 
         case ORDER_A_Z_OR_Z_A:
-            if(action.payload === "A-Z") {
+            if (action.payload === "A-Z") {
                 return {
                     ...state,
-                    filterAndOrder: [...state.filterAndOrder.sort((a, b) => {
-                        if(a.name < b.name) {
-                            return -1;
-                        }
-                        if(a.name > b.name) {
-                            return 1;
-                        }
-                        return 0;
-                    })]
-                }
+                    filterAndOrder: [
+                        ...state.filterAndOrder.sort((a, b) => {
+                            if (a.name < b.name) {
+                                return -1;
+                            }
+                            if (a.name > b.name) {
+                                return 1;
+                            }
+                            return 0;
+                        }),
+                    ],
+                };
             }
-            if(action.payload === "Z-A") {
+            if (action.payload === "Z-A") {
                 return {
                     ...state,
-                    filterAndOrder: [...state.filterAndOrder.sort((a, b) => {
-                        if(b.name < a.name) {
-                            return -1;
-                        }
-                        if(b.name > a.name) {
-                            return 1;
-                        }
-                        return 0;
-                    })]
-                }
+                    filterAndOrder: [
+                        ...state.filterAndOrder.sort((a, b) => {
+                            if (b.name < a.name) {
+                                return -1;
+                            }
+                            if (b.name > a.name) {
+                                return 1;
+                            }
+                            return 0;
+                        }),
+                    ],
+                };
             }
 
-            case ORDER_ATTACK:
-                if(action.payload === 'Lesser attack') {
-                    return {
-                        ...state,
-                        filterAndOrder: [...state.filterAndOrder.sort((a, b) => a.attack - b.attack)],
-                        
-                    }
-                } else {
-                    return {
-                        ...state,
-                        filterAndOrder: [...state.filterAndOrder.sort((a, b) => b.attack - a.attack)]
-                    }
-                }
-
-            
-            case FIND_POKEMON_BY_NAME:
+        case ORDER_ATTACK:
+            if (action.payload === "Lesser attack") {
                 return {
                     ...state,
-                    pokemon: [ action.payload ]
-                }
-
-            
-            case FIND_POKEMON_BY_ID:
+                    filterAndOrder: [
+                        ...state.filterAndOrder.sort(
+                            (a, b) => a.attack - b.attack
+                        ),
+                    ],
+                };
+            } else {
                 return {
                     ...state,
-                    pokemonDetail: [ action.payload ]
-                }
+                    filterAndOrder: [
+                        ...state.filterAndOrder.sort(
+                            (a, b) => b.attack - a.attack
+                        ),
+                    ],
+                };
+            }
 
-            case SET_POKEMON:
-                return {
-                    ...state,
-                    pokemon: action.payload
-                }
+        case FIND_POKEMON_BY_NAME:
+            return {
+                ...state,
+                pokemon: [action.payload],
+            };
 
-            case SET_POKEMON_DETAIL:
-                return {
-                    ...state,
-                    pokemonDetail: action.payload
-                }
+        case FIND_POKEMON_BY_ID:
+            return {
+                ...state,
+                pokemonDetail: [action.payload],
+            };
 
+        case SET_POKEMON:
+            return {
+                ...state,
+                pokemon: action.payload,
+            };
+
+        case SET_POKEMON_DETAIL:
+            return {
+                ...state,
+                pokemonDetail: action.payload,
+            };
 
         default:
             return {
