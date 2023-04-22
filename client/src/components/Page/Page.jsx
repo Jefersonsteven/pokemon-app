@@ -1,6 +1,6 @@
 import './Page.scss';
 
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useMemo } from "react";
 import { Arrow, Card, Loading } from "../index";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentPage } from "../../redux/actions";
@@ -36,8 +36,6 @@ function Page() {
             </div>
 
             <div className="PageNavigator">
-
-
                 <button
                     style={{ transform: 'rotate(-90deg)' }}
                     className='Previous'
@@ -73,8 +71,8 @@ function Page() {
                 >
                     <Arrow />
                 </button>
-
             </div>
+
         </div>
     );
 }
