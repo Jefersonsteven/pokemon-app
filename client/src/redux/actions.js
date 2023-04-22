@@ -11,8 +11,8 @@ export const ORDER_ATTACK = "ORDER_ATTACK";
 export const SET_POKEMON = "SET_POKEMON";
 export const SET_POKEMON_DETAIL = "SET_POKEMON_DETAIL";
 
-export const URL = "http://localhost:3001/api/pokemons";
-//export const URL = 'https://pokemon-api-jeffer.onrender.com/api/pokemons';
+//export const URL = "http://localhost:3001/api/pokemons";
+export const URL = "https://pokemon-api-jeffer.onrender.com/api/pokemons";
 
 //* async
 export const findPokemons = (route = URL) => {
