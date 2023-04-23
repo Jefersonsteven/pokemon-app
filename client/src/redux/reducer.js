@@ -49,6 +49,7 @@ function rootReducer(state = initialState, action) {
                     return {
                         ...state,
                         filterAndOrder: [...state.pokemons],
+                        currentPage: 0,
                     };
                 } else {
                     return {
@@ -56,6 +57,7 @@ function rootReducer(state = initialState, action) {
                         filterAndOrder: state.pokemons.filter((pokemon) => {
                             return pokemon.Types?.includes(action.payload);
                         }),
+                        currentPage: 0,
                     };
                 }
             }
@@ -67,6 +69,7 @@ function rootReducer(state = initialState, action) {
                     return {
                         ...state,
                         filterAndOrder: [...state.pokemons],
+                        currentPage: 0,
                     };
                 }
                 if (action.payload === "API") {
@@ -75,6 +78,7 @@ function rootReducer(state = initialState, action) {
                         filterAndOrder: state.pokemons.filter((pokemon) => {
                             return pokemon.id < 1200;
                         }),
+                        currentPage: 0,
                     };
                 } else {
                     return {
@@ -82,6 +86,7 @@ function rootReducer(state = initialState, action) {
                         filterAndOrder: state.pokemons.filter((pokemon) => {
                             return pokemon.id >= 1200;
                         }),
+                        currentPage: 0,
                     };
                 }
             }
@@ -93,6 +98,7 @@ function rootReducer(state = initialState, action) {
                     filterAndOrder: [
                         ...state.filterAndOrder.sort((a, b) => b.id - a.id),
                     ],
+                    currentPage: 0,
                 };
             } else {
                 return {
@@ -118,6 +124,7 @@ function rootReducer(state = initialState, action) {
                             return 0;
                         }),
                     ],
+                    currentPage: 0,
                 };
             }
             if (action.payload === "Z-A") {
@@ -134,6 +141,7 @@ function rootReducer(state = initialState, action) {
                             return 0;
                         }),
                     ],
+                    currentPage: 0,
                 };
             }
 

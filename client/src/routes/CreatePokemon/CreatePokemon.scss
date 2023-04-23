@@ -123,6 +123,16 @@
                 border: none;
                 font-weight: 700;
                 font-family: var(--font);
+                color: var(--color-principal-clear);
+            }
+            & button:hover {
+                color: white;
+                & svg {
+                    & path {
+                        fill: white;
+                    }
+                }
+                background-color: var(--color-principal-clear);
             }
         }
     }

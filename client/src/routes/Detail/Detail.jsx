@@ -17,8 +17,6 @@ function Detail() {
         dispatch(findPokemonByID(pokemonId));
     }, [])
 
-    // TODO: Progress Bar Tag
-
     return (
         <div className="PokemonDetail_container">
             <div onClick={() => dispatch(setPokemonDetail())}>

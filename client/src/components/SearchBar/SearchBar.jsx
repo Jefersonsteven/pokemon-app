@@ -28,8 +28,6 @@ function SearchBar() {
         openResult ? setOpenResult(false) : setOpenResult(true);
     }
 
-    // TODO: Hover
-
     return (
         <div className="Search_container">
             <div className="SearchBar">
@@ -39,7 +37,7 @@ function SearchBar() {
                     placeholder="Search pokemon"
                     value={searchValue}
                     onKeyDown={(event) => {
-                        if (event.key === "Enter") {
+                        if (event.key === "Enter" && searchValue.length > 0) {
                             handleOpenResult();
                             setSearchValue('');
                             dispatch(findPokemonByName(setNamePokemonForBD(searchValue)))

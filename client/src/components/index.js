@@ -10,6 +10,8 @@ import Exit from "./svgs/Exit";
 import Arrow from "./svgs/Arrow";
 import Polygon from "./svgs/Polygon";
 import UserAdd from "./svgs/UserAdd";
+import GitHub from "./svgs/GitHub";
+
 import Nav from "./Nav/Nav";
 import SearchBar from "./SearchBar/SearchBar";
 import FilterAndOrder from "./FilterAndOrder/FilterAndOrder";
@@ -40,4 +42,5 @@ export {
     Polygon,
     UserAdd,
     Loading,
+    GitHub,
 };
