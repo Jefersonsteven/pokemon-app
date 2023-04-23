@@ -31,7 +31,7 @@ server.name = "API";
 
 // Syncing all the models at once.
 
-conn.sync({ forced: true }).then(() => {
+conn.sync({ alter: true }).then(() => {
     server.use(express.json());
     server.use(cors());
     server.use(morgan("dev"));
