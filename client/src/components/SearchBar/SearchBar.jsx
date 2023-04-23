@@ -28,6 +28,8 @@ function SearchBar() {
         openResult ? setOpenResult(false) : setOpenResult(true);
     }
 
+    // TODO: Hover
+
     return (
         <div className="Search_container">
             <div className="SearchBar">
