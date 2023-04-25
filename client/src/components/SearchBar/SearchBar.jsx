@@ -62,7 +62,11 @@ function SearchBar() {
                         <Close_icon />
                     </div>
                     {!pokemon[0] && <Loading />}
-                    {pokemon[0]?.message && <span>{pokemon[0]?.message}</span>}
+                    {pokemon[0]?.message &&
+                        <div>
+                            <span>{pokemon[0]?.message}</span>
+                        </div>
+                    }
                     {pokemon[0]?.name &&
                         pokemon.map(({ id, image, name, Types }) => {
                             return (

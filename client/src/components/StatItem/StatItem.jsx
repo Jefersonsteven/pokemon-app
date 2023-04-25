@@ -8,7 +8,7 @@ function StatItem({ title, stat, color }) {
             <h3 className="StatTitle">{title}</h3>
             <div className="StatBar">
                 <div
-                    style={{ backgroundColor: color, width: stat / 1.6 }}
+                    style={{ backgroundColor: color, width: `${stat / 3}%` }}
                     className="StatPercetage"
                 >
                     <p className="Stat">{stat}</p>

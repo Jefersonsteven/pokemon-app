@@ -17,6 +17,7 @@ function CreatePokemon() {
 
 
     const [created, setCreated] = useState({});
+
     useEffect(() => {
         dispatch(findPokemons());
     }, [created]);
@@ -97,18 +98,7 @@ function CreatePokemon() {
                 })
             })
             const data = await response.json();
-            setForm({
-                name: '',
-                image: '',
-                up: 0,
-                attack: 0,
-                defense: 0,
-                speed: 0,
-                height: 0,
-                weight: 0,
-                types: []
-            })
-            setCreated({ name: setNamePokemonForClient(data.data.name) });
+            data.data ? setCreated({ name: setNamePokemonForClient(data.data.name) }) : setCreated(data)
         }
     }
 
@@ -128,15 +118,16 @@ function CreatePokemon() {
     return (
         <div className='CreatePokemon'>
 
-            {created?.name &&
+            {(created?.name || created?.message) &&
                 <div className="Created_Container">
                     <div className="Created">
                         <div>
-                            <h2>Created</h2>
-                            <p>Pokemon: {created.name}</p>
+                            {created.name ? <h2>Created</h2> : <h2>Error</h2>}
+                            {created.name ? <p>Pokemon: {created.name}</p> : <p>Pokemon Exist: {created.message}</p>}
                             <Link to="/home">
-                                <button>Good</button>
+                                <button>Home</button>
                             </Link>
+                            <button onClick={() => window.location.reload(false)}>Create another</button>
                         </div>
                     </div>
                 </div>}

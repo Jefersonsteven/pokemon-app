@@ -1,9 +1,11 @@
 import './Page.scss';
 
-import React, { useMemo } from "react";
+import React from "react";
 import { Arrow, Card, Loading } from "../index";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentPage } from "../../redux/actions";
+import { usePage } from '../../hooks/usePage';
+
 
 function Page() {
     const dispatch = useDispatch();
@@ -11,19 +13,7 @@ function Page() {
     const pokemons = useSelector(state => state.filterAndOrder);
     const numberOfPokemonsPerPages = 12;
 
-    const countPage = useMemo(() => {
-        if (numberOfPokemonsPerPages <= 0 || pokemons.length === 0) {
-            return [];
-        }
-        return Array.from(
-            { length: Math.ceil(pokemons.length / numberOfPokemonsPerPages) },
-            (_, i) => i + 1
-        );
-    }, [numberOfPokemonsPerPages, pokemons]);
-
-    const Start = currentPage * numberOfPokemonsPerPages;
-    const End = Start + numberOfPokemonsPerPages;
-    const page = pokemons.slice(Start, End);
+    const { page, countPage } = usePage(pokemons, numberOfPokemonsPerPages, currentPage);
 
     return (
         <div className="Page">

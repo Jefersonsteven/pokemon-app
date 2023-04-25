@@ -12,9 +12,9 @@
     margin-top: 18px;
     display: flex;
     justify-content: space-between;
-    & div {
+    & > div {
         position: relative;
-        & div:nth-child(1):hover{
+        & > div:nth-child(1):hover{
             background-color: white;
             & svg {
                 & path {
@@ -46,9 +46,6 @@
                 border-radius: 3px;
             }
         }
-    }
-    & div:hover {
-        background-color: white;
     }
     & .Filter {
         & > div:nth-child(1) {

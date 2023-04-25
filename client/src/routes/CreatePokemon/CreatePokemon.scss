@@ -26,19 +26,19 @@
             border-radius: 5px;
             padding: 50px;
             text-transform: capitalize;
+            & button {
+                padding: 7px 25px;
+                border-radius: 25px;
+                background: #fff;
+                color: var(--color-principal);
+                border: none;
+                font-family: var(--font);
+                font-weight: 700;
+            }
             & div {
                     display: flex;
                     flex-direction: column;
                     gap: 20px;
-                    & button {
-                        padding: 7px 25px;
-                        border-radius: 25px;
-                        background: #fff;
-                        color: var(--color-principal);
-                        border: none;
-                        font-family: var(--font);
-                        font-weight: 700;
-                    }
             }
         }
     }
@@ -199,11 +199,10 @@
                     & p {
                         font-size: 2.4rem;
                     }
-                    & a {
-                        & button {
-                            padding: 10px 45px;
-                            font-size: 2rem;
-                        }
+                    
+                    & button {
+                        padding: 10px 45px;
+                        font-size: 2rem;
                     }
                 }
             }
