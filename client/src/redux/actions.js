@@ -16,7 +16,7 @@ export const URL = "http://localhost:3001/api/pokemons";
 
 //* async
 export const findPokemons = (route = URL) => {
-    return async (dispatch) => {
+    return (dispatch) => {
         fetch(route)
             .then((response) => response.json())
             .then((pokemons) =>
