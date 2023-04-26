@@ -32,7 +32,7 @@ function Detail() {
                     </div>
                     <h2>{`${pd.name}`}</h2>
                     <div className="Stats">
-                        <StatItem title="Up" stat={pd.up} color={'#27AE60'} />
+                        <StatItem title="Hp" stat={pd.up} color={'#27AE60'} />
                         <StatItem title="Attack" stat={pd.attack} color={'#EB5757'} />
                         <StatItem title="Defense" stat={pd.defense} color={'#2D9CDB'} />
                         {pd.speed && <StatItem title="Speed" stat={pd?.speed} color={'#F2C94C'} />}
