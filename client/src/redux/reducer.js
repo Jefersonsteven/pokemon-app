@@ -16,6 +16,8 @@ import {
 const initialState = {
     pokemons: [],
     filterAndOrder: [],
+    filter: [],
+    order: [],
     types: [],
     currentPage: 0,
     pokemon: [],
@@ -44,6 +46,9 @@ function rootReducer(state = initialState, action) {
             };
 
         case FILTER_PER_TYPES:
+            const temp = state.pokemons.filter((pokemon) => {
+                return pokemon.Types?.includes(action.payload);
+            });
             if (action.payload !== "Types") {
                 if (action.payload === "Alls types") {
                     return {
@@ -54,9 +59,8 @@ function rootReducer(state = initialState, action) {
                 } else {
                     return {
                         ...state,
-                        filterAndOrder: state.pokemons.filter((pokemon) => {
-                            return pokemon.Types?.includes(action.payload);
-                        }),
+                        filterAndOrder: temp,
+                        filter: temp,
                         currentPage: 0,
                     };
                 }
@@ -68,14 +72,14 @@ function rootReducer(state = initialState, action) {
                 if (action.payload === "Alls Origins") {
                     return {
                         ...state,
-                        filterAndOrder: [...state.pokemons],
+                        filterAndOrder: [...state.filter],
                         currentPage: 0,
                     };
                 }
                 if (action.payload === "API") {
                     return {
                         ...state,
-                        filterAndOrder: state.pokemons.filter((pokemon) => {
+                        filterAndOrder: state.filter.filter((pokemon) => {
                             return pokemon.id < 1200;
                         }),
                         currentPage: 0,
@@ -83,7 +87,7 @@ function rootReducer(state = initialState, action) {
                 } else {
                     return {
                         ...state,
-                        filterAndOrder: state.pokemons.filter((pokemon) => {
+                        filterAndOrder: state.filter.filter((pokemon) => {
                             return pokemon.id >= 1200;
                         }),
                         currentPage: 0,

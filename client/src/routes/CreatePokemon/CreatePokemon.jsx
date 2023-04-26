@@ -11,21 +11,12 @@ import getColorPerType from '../../assets/getColorPerType';
 import { URL } from '../../redux/actions';
 
 function CreatePokemon() {
-
     const dispatch = useDispatch();
     const types = useSelector(state => state.types);
 
+    // * -------------------------- * //
 
     const [created, setCreated] = useState({});
-
-    useEffect(() => {
-        dispatch(findPokemons());
-    }, [created]);
-    if (types.length === 0) {
-        dispatch(findTypes());
-    }
-
-
     const [sendTypes, setSendTypes] = useState([]);
     const [form, setForm] = useState({
         name: '',
@@ -51,8 +42,32 @@ function CreatePokemon() {
         form: ''
     });
 
-    // * 
+    // * -------------------------- * //
 
+    useEffect(() => {
+        dispatch(findPokemons());
+    }, [created]);
+    if (types.length === 0) {
+        dispatch(findTypes());
+    }
+
+    // * -------------------------- * //
+
+    // handler Checkbox
+    function handleCheckbox(event) {
+        const checked = event.target.checked;
+        const value = event.target.value;
+        if (checked) {
+            setSendTypes([...sendTypes, Math.floor(value)])
+        } else {
+            const types = sendTypes;
+            const index = types.findIndex(type => type === Math.floor(value));
+            types.splice(index, 1);
+            setSendTypes([...types]);
+        }
+    }
+
+    // Form Validation
     function handleForm(event) {
         const name = event.target.name;
         const value = event.target.value;
@@ -76,6 +91,7 @@ function CreatePokemon() {
         );
     }
 
+    // handler Submit
     async function handleSubmit(e) {
         e.preventDefault();
         if (validateForm(form, errors, setErrors)) {
@@ -98,22 +114,31 @@ function CreatePokemon() {
                 })
             })
             const data = await response.json();
+            setForm({
+                name: '',
+                image: '',
+                up: 0,
+                attack: 0,
+                defense: 0,
+                speed: 0,
+                height: 0,
+                weight: 0,
+                types: []
+            })
+            const f = e.target
+            f[0].value = null;
+            f[1].value = null;
+            f[2].value = null;
+            f[3].value = null;
+            f[4].value = null;
+            f[5].value = null;
+            f[6].value = null;
+            f[7].value = null;
+
             data.data ? setCreated({ name: setNamePokemonForClient(data.data.name) }) : setCreated(data)
         }
     }
 
-    function handleCheckbox(event) {
-        const checked = event.target.checked;
-        const value = event.target.value;
-        if (checked) {
-            setSendTypes([...sendTypes, Math.floor(value)])
-        } else {
-            const types = sendTypes;
-            const index = types.findIndex(type => type === Math.floor(value));
-            types.splice(index, 1);
-            setSendTypes([...types])
-        }
-    }
 
     return (
         <div className='CreatePokemon'>
@@ -127,7 +152,7 @@ function CreatePokemon() {
                             <Link to="/home">
                                 <button>Home</button>
                             </Link>
-                            <button onClick={() => window.location.reload(false)}>Create another</button>
+                            <button onClick={() => setCreated({})}>Create another</button>
                         </div>
                     </div>
                 </div>}
