@@ -21,7 +21,8 @@ export const findPokemons = (route = URL) => {
             .then((response) => response.json())
             .then((pokemons) =>
                 dispatch({ type: FIND_POKEMONS, payload: pokemons })
-            );
+            )
+            .catch((error) => console.log(error));
     };
 };
 
