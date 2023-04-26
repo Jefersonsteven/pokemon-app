@@ -12,8 +12,16 @@
     margin-top: 18px;
     display: flex;
     justify-content: space-between;
-    & div {
+    & > div {
         position: relative;
+        & > div:nth-child(1):hover{
+            background-color: white;
+            & svg {
+                & path {
+                    fill: var(--color-principal-clear);
+                }
+            }
+        }
         & div:nth-child(2) {
             position: absolute;
             width: 191px;

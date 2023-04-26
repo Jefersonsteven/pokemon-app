@@ -11,20 +11,12 @@ import getColorPerType from '../../assets/getColorPerType';
 import { URL } from '../../redux/actions';
 
 function CreatePokemon() {
-
     const dispatch = useDispatch();
     const types = useSelector(state => state.types);
 
+    // * -------------------------- * //
 
-    const [ created, setCreated ] = useState({});
-    useEffect(()=>{
-        dispatch(findPokemons());
-    },[created]);
-    if (types.length === 0) {
-        dispatch(findTypes());
-    }
-        
-        
+    const [created, setCreated] = useState({});
     const [sendTypes, setSendTypes] = useState([]);
     const [form, setForm] = useState({
         name: '',
@@ -50,8 +42,32 @@ function CreatePokemon() {
         form: ''
     });
 
-    // * 
+    // * -------------------------- * //
 
+    useEffect(() => {
+        dispatch(findPokemons());
+    }, [created]);
+    if (types.length === 0) {
+        dispatch(findTypes());
+    }
+
+    // * -------------------------- * //
+
+    // handler Checkbox
+    function handleCheckbox(event) {
+        const checked = event.target.checked;
+        const value = event.target.value;
+        if (checked) {
+            setSendTypes([...sendTypes, Math.floor(value)])
+        } else {
+            const types = sendTypes;
+            const index = types.findIndex(type => type === Math.floor(value));
+            types.splice(index, 1);
+            setSendTypes([...types]);
+        }
+    }
+
+    // Form Validation
     function handleForm(event) {
         const name = event.target.name;
         const value = event.target.value;
@@ -75,10 +91,11 @@ function CreatePokemon() {
         );
     }
 
+    // handler Submit
     async function handleSubmit(e) {
         e.preventDefault();
-        if(validateForm(form, errors, setErrors)) {
-            const { name,image,up,attack,defense,speed,height,weight,types } = form;
+        if (validateForm(form, errors, setErrors)) {
+            const { name, image, up, attack, defense, speed, height, weight, types } = form;
             const response = await fetch(URL, {
                 method: 'POST',
                 headers: {
@@ -108,35 +125,34 @@ function CreatePokemon() {
                 weight: 0,
                 types: []
             })
-            setCreated({name: setNamePokemonForClient(data.data.name)});
+            const f = e.target
+            f[0].value = null;
+            f[1].value = null;
+            f[2].value = null;
+            f[3].value = null;
+            f[4].value = null;
+            f[5].value = null;
+            f[6].value = null;
+            f[7].value = null;
+
+            data.data ? setCreated({ name: setNamePokemonForClient(data.data.name) }) : setCreated(data)
         }
     }
 
-    function handleCheckbox(event) {
-        const checked = event.target.checked;
-        const value = event.target.value;
-        if (checked) {
-            setSendTypes([...sendTypes, Math.floor(value)])
-        } else {
-            const types = sendTypes;
-            const index = types.findIndex(type => type === Math.floor(value));
-            types.splice(index, 1);
-            setSendTypes([ ...types ])
-        }
-    }
 
     return (
         <div className='CreatePokemon'>
 
-            {created?.name &&
+            {(created?.name || created?.message) &&
                 <div className="Created_Container">
                     <div className="Created">
                         <div>
-                            <h2>Created</h2>
-                            <p>Pokemon: {created.name}</p>
+                            {created.name ? <h2>Created</h2> : <h2>Error</h2>}
+                            {created.name ? <p>Pokemon: {created.name}</p> : <p>Pokemon Exist: {created.message}</p>}
                             <Link to="/home">
-                                <button>Good</button>
+                                <button>Home</button>
                             </Link>
+                            <button onClick={() => setCreated({})}>Create another</button>
                         </div>
                     </div>
                 </div>}
@@ -155,7 +171,7 @@ function CreatePokemon() {
                         {types.length > 0 &&
                             types.map(type => {
                                 return (
-                                    <div key={type.id} style={{backgroundColor: getColorPerType(type.name)}}>
+                                    <div key={type.id} style={{ backgroundColor: getColorPerType(type.name) }}>
                                         <input
                                             onChange={handleCheckbox}
                                             type="checkbox"
@@ -174,42 +190,50 @@ function CreatePokemon() {
 
                 <form onChange={handleForm} onSubmit={handleSubmit}>
                     <div>
-                        <input type="text" placeholder="Name" name="name" />
+                        <label htmlFor="name">Name</label>
+                        <input type="text" placeholder="Name" name="name" id='name' />
                         <span>{errors.name}</span>
                     </div>
 
                     <div>
-                        <input type="text" placeholder="Image Link" name="image" />
+                        <label htmlFor='image'>Image</label>
+                        <input type="text" placeholder="Image Link" name="image" id='image' />
                         <span>{errors.image}</span>
                     </div>
 
                     <div>
-                        <input type="number" min="0" max="270" placeholder="up" name="up" />
+                        <label htmlFor='up'>Hp</label>
+                        <input type="number" min="0" max="270" placeholder="up" name="up" id='up' />
                         <span>{errors.up}</span>
                     </div>
 
                     <div>
-                        <input type="number" min="0" max="300" placeholder="Attack" name="attack" />
+                        <label htmlFor='attack'>Attack</label>
+                        <input type="number" min="0" max="300" placeholder="Attack" name="attack" id='attack' />
                         <span>{errors.attack}</span>
                     </div>
 
                     <div>
-                        <input type="number" min="0" max="250" placeholder="Defense" name="defense" />
+                        <label htmlFor='defense'>Defense</label>
+                        <input type="number" min="0" max="250" placeholder="Defense" name="defense" id='defense' />
                         <span>{errors.defense}</span>
                     </div>
 
                     <div>
-                        <input type="number" min="0" max="300" placeholder="Speed" name="speed" />
+                        <label htmlFor='speed'>Speed</label>
+                        <input type="number" min="0" max="300" placeholder="Speed" name="speed" id='speed' />
                         <span>{errors.speed}</span>
                     </div>
 
                     <div>
-                        <input type="number" min="0" max="18" placeholder="Height" name="height" />
+                        <label htmlFor='height'>Height</label>
+                        <input type="number" min="0" max="18" placeholder="Height" name="height" id='height' />
                         <span>{errors.height}</span>
                     </div>
 
                     <div>
-                        <input type="number" min="0" max="1000" placeholder="Weight" name="weight" />
+                        <label htmlFor='weight'>Weight</label>
+                        <input type="number" min="0" max="1000" placeholder="Weight" name="weight" id='weight' />
                         <span>{errors.weight}</span>
                     </div>
 

@@ -17,8 +17,6 @@ function Detail() {
         dispatch(findPokemonByID(pokemonId));
     }, [])
 
-
-
     return (
         <div className="PokemonDetail_container">
             <div onClick={() => dispatch(setPokemonDetail())}>

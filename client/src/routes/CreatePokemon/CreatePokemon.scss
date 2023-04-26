@@ -26,19 +26,19 @@
             border-radius: 5px;
             padding: 50px;
             text-transform: capitalize;
+            & button {
+                padding: 7px 25px;
+                border-radius: 25px;
+                background: #fff;
+                color: var(--color-principal);
+                border: none;
+                font-family: var(--font);
+                font-weight: 700;
+            }
             & div {
                     display: flex;
                     flex-direction: column;
                     gap: 20px;
-                    & button {
-                        padding: 7px 25px;
-                        border-radius: 25px;
-                        background: #fff;
-                        color: var(--color-principal);
-                        border: none;
-                        font-family: var(--font);
-                        font-weight: 700;
-                    }
             }
         }
     }
@@ -89,6 +89,7 @@
             & div {
                 display: flex;
                 flex-direction: column;
+                align-items: flex-start;
                 gap: 5px;
                 & input {
                     width: 100%;
@@ -122,6 +123,16 @@
                 border: none;
                 font-weight: 700;
                 font-family: var(--font);
+                color: var(--color-principal-clear);
+            }
+            & button:hover {
+                color: white;
+                & svg {
+                    & path {
+                        fill: white;
+                    }
+                }
+                background-color: var(--color-principal-clear);
             }
         }
     }
@@ -160,7 +171,6 @@
                 gap: 10px;
                 padding: 30px 35px;
                 & div {
-                    align-items: center;
                     width: 100%;
                     gap: 8px;
                     & input {
@@ -189,11 +199,10 @@
                     & p {
                         font-size: 2.4rem;
                     }
-                    & a {
-                        & button {
-                            padding: 10px 45px;
-                            font-size: 2rem;
-                        }
+                    
+                    & button {
+                        padding: 10px 45px;
+                        font-size: 2rem;
                     }
                 }
             }

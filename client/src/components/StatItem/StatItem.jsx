@@ -3,12 +3,12 @@ import './StatItem.scss';
 import React from "react";
 
 function StatItem({ title, stat, color }) {
-    return ( 
+    return (
         <div className="StatItem">
-            <p className="StatTitle">{title}</p>
+            <h3 className="StatTitle">{title}</h3>
             <div className="StatBar">
-                <div 
-                    style={{backgroundColor: color, width: stat / 1.6}}
+                <div
+                    style={{ backgroundColor: color, width: `${stat / 3}%` }}
                     className="StatPercetage"
                 >
                     <p className="Stat">{stat}</p>

@@ -21,6 +21,14 @@
             border-radius: 0px 25px 25px 0px;
             background-color: var(--color-principal-clear);
         }
+        & button:hover {
+            background-color: white;
+            & svg {
+                & path {
+                    fill: var(--color-principal-clear);
+                }
+            }
+        }
     }
     & .SearchResult {
         display: flex;
