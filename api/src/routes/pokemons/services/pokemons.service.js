@@ -12,51 +12,55 @@ class Pokemons {
 
     // funcion que responde con 60 pokemons de la API y los que contenga la base de datos. ✔️
     async findPokemons() {
-        const dataDB = await Pokemon.findAll({
-            include: {
-                model: Type,
-                attributes: ["name"],
-                through: {
-                    attributes: [],
+        try {
+            const dataDB = await Pokemon.findAll({
+                include: {
+                    model: Type,
+                    attributes: ["name"],
+                    through: {
+                        attributes: [],
+                    },
                 },
-            },
-        });
+            });
 
-        const responseDB = dataDB?.map((data) => {
-            const { id, image, name, Types, attack } = data;
-            return {
-                id,
-                image,
-                name: setNamePokemonForClient(name),
-                Types: Types.map((type) => type.name),
-                attack,
-            };
-        });
+            const responseDB = dataDB?.map((data) => {
+                const { id, image, name, Types, attack } = data;
+                return {
+                    id,
+                    image,
+                    name: setNamePokemonForClient(name),
+                    Types: Types.map((type) => type.name),
+                    attack,
+                };
+            });
 
-        const pokemons = await axios.get(
-            `${this.API_URL}/pokemon/?limit=60&offset=80`
-        );
-        const results = pokemons.data.results.map((pokemon) =>
-            axios.get(pokemon.url)
-        );
-        const dataAPI = await Promise.all(results);
-        const responseAPI = dataAPI.map((data) => {
-            const { id, sprites, name, types, stats } = data.data;
-            return {
-                id,
-                image:
-                    sprites.other.home.front_default ||
-                    sprites.other["official-artwork"].front_default,
-                name,
-                Types: types.map((type) => type.type.name),
-                attack: stats[1].base_stat,
-            };
-        });
+            const pokemons = await axios.get(
+                `${this.API_URL}/pokemon/?limit=60&offset=80`
+            );
+            const results = pokemons.data.results.map((pokemon) =>
+                axios.get(pokemon.url)
+            );
+            const dataAPI = await Promise.all(results);
+            const responseAPI = dataAPI.map((data) => {
+                const { id, sprites, name, types, stats } = data.data;
+                return {
+                    id,
+                    image:
+                        sprites.other.home.front_default ||
+                        sprites.other["official-artwork"].front_default,
+                    name,
+                    Types: types.map((type) => type.type.name),
+                    attack: stats[1].base_stat,
+                };
+            });
 
-        if (dataDB) {
-            return [...responseDB, ...responseAPI];
+            if (dataDB) {
+                return [...responseDB, ...responseAPI];
+            }
+            return responseAPI;
+        } catch (error) {
+            return { message: error.message };
         }
-        return responseAPI;
     }
 
     // funcion que responde con 1 pokemon, lo busca en la API y en la base de datos. ✔️

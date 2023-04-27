@@ -1,6 +1,4 @@
 const express = require("express");
-const cookieParser = require("cookie-parser");
-const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const routes = require("../routes/index.js");
 const { conn } = require("../database/db.js");
@@ -14,13 +12,7 @@ const port = 3001;
 
 server.name = "API";
 
-// server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
-// server.use(bodyParser.json({ limit: '50mb' }));
-// server.use(cookieParser());
-
-// Syncing all the models at once.
-
-conn.sync({ force: true }).then(() => {
+conn.sync({ alter: true }).then(() => {
     server.use(express.json());
     server.use(cors());
     server.use(morgan("dev"));
