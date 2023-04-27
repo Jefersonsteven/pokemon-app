@@ -28,7 +28,7 @@ function Detail() {
             {pd &&
                 <div className="PokemonDetail">
                     <div>
-                        <img src={pd.image} alt="pd.name" />
+                        <img src={pd.image} onError={(event) => event.target.src = '../../assets/images/default-card.png'} alt={pd.name} />
                     </div>
                     <h2>{`${pd.name}`}</h2>
                     <div className="Stats">
