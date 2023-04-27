@@ -72,14 +72,14 @@ function rootReducer(state = initialState, action) {
                 if (action.payload === "Alls Origins") {
                     return {
                         ...state,
-                        filterAndOrder: [...state.filter],
+                        filterAndOrder: [...state.pokemons],
                         currentPage: 0,
                     };
                 }
                 if (action.payload === "API") {
                     return {
                         ...state,
-                        filterAndOrder: state.filter.filter((pokemon) => {
+                        filterAndOrder: state.pokemons.filter((pokemon) => {
                             return pokemon.id < 1200;
                         }),
                         currentPage: 0,
@@ -87,7 +87,7 @@ function rootReducer(state = initialState, action) {
                 } else {
                     return {
                         ...state,
-                        filterAndOrder: state.filter.filter((pokemon) => {
+                        filterAndOrder: state.pokemons.filter((pokemon) => {
                             return pokemon.id >= 1200;
                         }),
                         currentPage: 0,

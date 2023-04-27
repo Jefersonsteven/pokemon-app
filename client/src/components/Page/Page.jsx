@@ -21,7 +21,7 @@ function Page() {
             <div className='Page_container'>
                 {
                     pokemons.length > 0 &&
-                    page.map(({ id, image, name, Types }) => <Card key={id} id={id} image={image} name={name} types={Types} />)
+                    page.map(({ id, image, name, Types, attack }) => <Card key={id} id={id} image={image} name={name} types={Types} attack={attack} />)
                 }
             </div>
 
