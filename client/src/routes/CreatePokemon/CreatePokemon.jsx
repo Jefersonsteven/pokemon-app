@@ -166,7 +166,7 @@ function CreatePokemon() {
             <div className='Form'>
 
                 <div className="Types-select">
-                    <p>Types</p>
+                    <p>Types *</p>
                     <div className="Types">
                         {types.length > 0 &&
                             types.map(type => {
@@ -190,31 +190,31 @@ function CreatePokemon() {
 
                 <form onChange={handleForm} onSubmit={handleSubmit}>
                     <div>
-                        <label htmlFor="name">Name</label>
+                        <label htmlFor="name">Name *</label>
                         <input type="text" placeholder="Name" name="name" id='name' />
                         <span>{errors.name}</span>
                     </div>
 
                     <div>
-                        <label htmlFor='image'>Image</label>
+                        <label htmlFor='image'>Image Url *</label>
                         <input type="text" placeholder="Image Link" name="image" id='image' />
                         <span>{errors.image}</span>
                     </div>
 
                     <div>
-                        <label htmlFor='up'>Hp</label>
+                        <label htmlFor='up'>Hp *</label>
                         <input type="number" min="0" max="270" placeholder="up" name="up" id='up' />
                         <span>{errors.up}</span>
                     </div>
 
                     <div>
-                        <label htmlFor='attack'>Attack</label>
+                        <label htmlFor='attack'>Attack *</label>
                         <input type="number" min="0" max="300" placeholder="Attack" name="attack" id='attack' />
                         <span>{errors.attack}</span>
                     </div>
 
                     <div>
-                        <label htmlFor='defense'>Defense</label>
+                        <label htmlFor='defense'>Defense *</label>
                         <input type="number" min="0" max="250" placeholder="Defense" name="defense" id='defense' />
                         <span>{errors.defense}</span>
                     </div>
