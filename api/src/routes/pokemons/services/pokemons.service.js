@@ -181,45 +181,53 @@ class Pokemons {
 
     // funcion que responde crea un pokemon en la base de datos. ✔️
     async createPokemon(req, res) {
-        const {
-            name,
-            image,
-            up,
-            attack,
-            defense,
-            speed,
-            height,
-            weight,
-            types,
-        } = req.body;
-        const newPokemon = await Pokemon.create({
-            name,
-            image,
-            up,
-            attack,
-            defense,
-            speed: speed || null,
-            height: height || null,
-            weight: weight || null,
-        });
+        try {
+            const {
+                name,
+                image,
+                up,
+                attack,
+                defense,
+                speed,
+                height,
+                weight,
+                types,
+            } = req.body;
+            const newPokemon = await Pokemon.create({
+                name,
+                image,
+                up,
+                attack,
+                defense,
+                speed: speed || null,
+                height: height || null,
+                weight: weight || null,
+            });
 
-        await newPokemon.addTypes(types);
+            await newPokemon.addTypes(types);
 
-        return newPokemon;
+            return newPokemon;
+        } catch (error) {
+            return { message: error.message };
+        }
     }
 
     // funcion que copia los types de la API a la BD y responde con los types de la base de datos ✔️
     async findTypes() {
-        const typesBD = await Type.findAll();
-        if (typesBD.length === 0) {
-            const data = await axios.get(`${this.API_URL}/type`);
-            const types = data.data.results.map((type) => {
-                return { name: type.name };
-            });
-            const newTypes = await Type.bulkCreate(types);
-            return newTypes;
+        try {
+            const typesBD = await Type.findAll();
+            if (typesBD.length === 0) {
+                const data = await axios.get(`${this.API_URL}/type`);
+                const types = data.data.results.map((type) => {
+                    return { name: type.name };
+                });
+                const newTypes = await Type.bulkCreate(types);
+                return newTypes;
+            }
+            return typesBD;
+        } catch (error) {
+            return { message: error.message };
         }
-        return typesBD;
     }
 }
 
