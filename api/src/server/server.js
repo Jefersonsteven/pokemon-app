@@ -14,12 +14,6 @@ const port = 3001;
 
 server.name = "API";
 
-// server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
-// server.use(bodyParser.json({ limit: '50mb' }));
-// server.use(cookieParser());
-
-// Syncing all the models at once.
-
 conn.sync({ force: true }).then(() => {
     server.use(express.json());
     server.use(cors());

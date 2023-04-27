@@ -27,36 +27,53 @@ export const findPokemons = (route = URL) => {
 
 export const findPokemonByName = (name, route = URL) => {
     return async (dispatch) => {
-        if (name) {
-            const data = await fetch(`${route}/name/?name=${name}`);
-            const pokemon = await data.json();
-            if (pokemon.name) {
-                return dispatch({
-                    type: FIND_POKEMON_BY_NAME,
-                    payload: pokemon,
-                });
+        try {
+            if (name) {
+                const data = await fetch(`${route}/name/?name=${name}`);
+                const pokemon = await data.json();
+                if (pokemon.name) {
+                    return dispatch({
+                        type: FIND_POKEMON_BY_NAME,
+                        payload: pokemon,
+                    });
+                }
+                if (pokemon.errorDB && pokemon.errorAPI) {
+                    return dispatch({
+                        type: FIND_POKEMON_BY_NAME,
+                        payload: { message: "Not found" },
+                    });
+                }
             }
+        } catch (error) {
+            return dispatch({
+                type: FIND_POKEMON_BY_NAME,
+                payload: { message: error },
+            });
         }
-        return dispatch({
-            type: FIND_POKEMON_BY_NAME,
-            payload: { message: "Not found" },
-        });
     };
 };
 
 export const findPokemonByID = (id, route = URL) => {
     return async (dispatch) => {
-        const data = await fetch(`${route}/${id}`);
-        const pokemon = await data.json();
-        return dispatch({ type: FIND_POKEMON_BY_ID, payload: pokemon });
+        try {
+            const data = await fetch(`${route}/${id}`);
+            const pokemon = await data.json();
+            return dispatch({ type: FIND_POKEMON_BY_ID, payload: pokemon });
+        } catch (error) {
+            return dispatch({ type: FIND_POKEMON_BY_ID, payload: error });
+        }
     };
 };
 
 export const findTypes = (route = `${URL}/types/`) => {
     return async (dispatch) => {
-        const data = await fetch(route);
-        const types = await data.json();
-        return dispatch({ type: FIND_TYPES, payload: types });
+        try {
+            const data = await fetch(route);
+            const types = await data.json();
+            return dispatch({ type: FIND_TYPES, payload: types });
+        } catch (error) {
+            return dispatch({ type: FIND_TYPES, payload: error });
+        }
     };
 };
 
